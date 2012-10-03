@@ -1,0 +1,113 @@
+/* 
+    Document   : global
+    Created on : 2 oct. 2012, 13:40:11
+    Author     : mael
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body{
+    width:1000px;
+    background-image:url("../images/fond.jpg");
+    margin:auto;
+}
+
+#top_banner{
+    width:991px;
+    height:20px;
+    background :url("../images/top-banner.png") repeat scroll 0 0 transparent;
+}
+
+#banner{
+    width:991px;
+    text-align:center;
+    background :url("../images/banner-repeat.png") repeat scroll 0 0 transparent;
+}
+
+#banner h1{
+    margin:0px;
+}
+
+#bottom_banner{
+    width:991px;
+    height:20px;
+    background :url("../images/bottom-banner.png") repeat scroll 0 0 transparent;
+}
+
+#main_container{
+    margin:auto;
+}
+
+#left_col{
+    float:left;
+    width:670px;
+}
+
+#right_col{
+    float:left;
+    width:320px;
+    margin-top: 20px;
+}
+
+#top_map{
+    width:670px;
+    height:20px;
+    background :url("../images/top-map.png") repeat scroll 0 0 transparent;
+}
+
+#map_container{
+    background :url("../images/map-repeat.png") repeat scroll 0 0 transparent;
+    padding-left:35px;
+    padding-right:35px;
+
+}
+
+#map{
+    width:600px;
+    height:600px;
+}
+
+#bottom_map{
+    width:670px;
+    height:20px;
+    background :url("../images/bottom-map.png") repeat scroll 0 0 transparent;
+}
+
+.mapstraction {
+  height: 300px;
+  width: 100%;
+  z-index: 1;
+}
+
+#top_box{
+    width:320px;
+    height:20px;
+    background :url("../images/top-box.png") repeat scroll 0 0 transparent;
+}
+
+#bottom_box{
+    width:320px;
+    height:20px;
+    background :url("../images/bottom-box.png") repeat scroll 0 0 transparent;
+}
+
+#filter{
+    width : 300px;
+    padding : 10px 10px;
+    background:url("../images/box-repeat.png") repeat scroll 0 0 transparent;
+}
+
+#info{
+    width : 300px;
+    background:url("../images/box-repeat.png") repeat scroll 0 0 transparent;
+    padding : 10px;
+}
+
+.clear{
+    clear:both;
+}
+
