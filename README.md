@@ -10,7 +10,6 @@ TODO
 ----
 
 * See how to place markers according to the distance for the PMV. (Thanatos21 & Niiner)
-* Create the database for application (create a table for PMV). (bmael)
 * Create a method for upload the open data into our database. (bmael)
 
 DONE
@@ -18,3 +17,4 @@ DONE
 
 * Static html interface for the application
 * Software structure established
+* Create the database for application (create a table for PMV). (bmael)
