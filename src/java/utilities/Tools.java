@@ -10,7 +10,7 @@ package utilities;
  */
 public class Tools {
     
-    public void parserCsv(String path){
+    public static void parserCsv(String path){
         
     }
     
