@@ -12,6 +12,12 @@ TODO
 * See how to place markers according to the distance for the PMV. (Thanatos21 & Niiner)
 * Create a method for upload the open data into our database. (bmael)
 
+INFO
+----
+
+* CSV library for JAVA : http://opencsv.sourceforge.net/#where-can-I-get-it
+
+
 DONE
 ----
 
