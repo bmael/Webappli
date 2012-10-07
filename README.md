@@ -9,6 +9,12 @@ We have to create a web application for Nantes.
 TODO
 ----
 
-* Create the static web interface.
-* Include the open street map on this interface.
-* See how open data works to place the "PMV" on this map.
+* See how to place markers according to the distance for the PMV. (Thanatos21 & Niiner)
+* Create the database for application (create a table for PMV). (bmael)
+* Create a method for upload the open data into our database. (bmael)
+
+DONE
+----
+
+* Static html interface for the application
+* Software structure established
