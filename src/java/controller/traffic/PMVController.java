@@ -52,14 +52,13 @@ public class PMVController {
                 
                 
                 for (String[] oneData : data) {
-                    String id = oneData[0];
+                    String id = oneData[0].replace(',', '.');
                     String sens = oneData[1];
                     String indic_temps = oneData[2];
-                    String longitude = oneData[3];
-                    String latitude = oneData[4];
+                    String longitude = oneData[3].replace(',', '.');
+                    String latitude = oneData[4].replace(',', '.');
                     
-                    int tmpid = Integer.valueOf(id).intValue();
-                    PMV pmv = new PMV(tmpid,
+                    PMV pmv = new PMV((int)Float.parseFloat(id),
                                         sens,
                                         ("Oui".equals(indic_temps)) ? true : false,
                                         Float.parseFloat(longitude),
@@ -102,6 +101,7 @@ public class PMVController {
     }
     
     public static void main(String args[]){
+        DataBaseManager.getInstance().clean("Pmv");
         System.out.print(System.getProperty("user.dir" ));
         PMVController pmvContr = new PMVController();
         try {

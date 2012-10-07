@@ -56,6 +56,16 @@ public class DataBaseManager {
         }
     }
     
+    public void clean(String table_Name){
+         String sqlquery = "DELETE FROM "+ table_Name;
+        try{
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(sqlquery);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
     public Connection getCon() {
         return con;
     }
