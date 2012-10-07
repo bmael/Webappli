@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package database;
+package controller.database;
 
 /**
  *
@@ -24,9 +24,8 @@ import java.sql.Statement;
  */
 public class DataBaseManager {
     
-    private static DataBaseManager instance;
-    
-    transient Connection con = null;
+    private static DataBaseManager instance; 
+    private Connection con = null;
     
     private DataBaseManager(){
          try {
@@ -40,7 +39,7 @@ public class DataBaseManager {
             e.printStackTrace();
         }
     }
-    
+        
     private void createTablePMV(){
         String sqlquery = "CREATE TABLE IF NOT EXISTS Pmv"+
                             "(numero INT,"
@@ -55,6 +54,10 @@ public class DataBaseManager {
         }catch(SQLException e){
             e.printStackTrace();
         }
+    }
+    
+    public Connection getCon() {
+        return con;
     }
     
     public static synchronized DataBaseManager getInstance(){
