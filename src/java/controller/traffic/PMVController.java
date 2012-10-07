@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.traffic.PMV;
 /**
  * Class to control a PMV on the database.
@@ -23,11 +25,11 @@ public class PMVController {
     public void importPMV() throws FileNotFoundException, IOException{
        
         try{
-            CSVReader readerPmvs = new CSVReader(new FileReader("resources/Localisation_pmv.csv"));
+            CSVReader readerPmvs = new CSVReader(new FileReader(System.getProperty("user.dir" )+"/src/java/resources/Localisation_pmv.csv"),';',' ');
             
             List<String[] > data = new ArrayList<String[] >();
 
-            String[] nextLine = null;
+            String[] nextLine = readerPmvs.readNext();
             try{
                 while ((nextLine = readerPmvs.readNext()) != null) {
                     int size = nextLine.length;
@@ -48,19 +50,24 @@ public class PMVController {
                     data.add(nextLine);
                 }
                 
-                List<PMV> pmvs = new ArrayList<PMV>();
-
+                
                 for (String[] oneData : data) {
                     String id = oneData[0];
                     String sens = oneData[1];
                     String indic_temps = oneData[2];
                     String longitude = oneData[3];
                     String latitude = oneData[4];
-
-                    PMV pmv = new PMV();
-                    pmvs.add(pmv);
+                    
+                    int tmpid = Integer.valueOf(id).intValue();
+                    PMV pmv = new PMV(tmpid,
+                                        sens,
+                                        ("Oui".equals(indic_temps)) ? true : false,
+                                        Float.parseFloat(longitude),
+                                        Float.parseFloat(latitude));
+                    
+                    this.add(pmv);
                 }
-                
+                           
             }catch(IOException e){
                 e.printStackTrace();
             }
@@ -70,22 +77,37 @@ public class PMVController {
         }
     }
     
+    /**
+     * Add the PMV to the database.
+     * @param pmv
+     */
     public void add(PMV pmv){
         try{
             Statement s = DataBaseManager.getInstance().getCon().createStatement();
-                        
-            String sqlquery = "INSERT INTO PMV (id,sens,indic_temps_parcours,longitude,latitude)"
-                                + "VALUES('"+ pmv.getId() +"', "
-                    +  "'" + pmv.getSens() +"', "
-                    +  "'" + pmv.getSens() +"', "
-                    +  "'" + pmv.getSens() +"', "
-                                +  "'" + pmv.getSens() +"', ";
+                        int indic = (pmv.isIndic_temps())? 1 : 0;
+            String sqlquery = "INSERT INTO Pmv (numero,sens,indic_temps_parcours,longitude,latitude)"
+                                + "VALUES('"+ pmv.getId() + "', "
+                                +  "'" + pmv.getSens() + "', "
+                                +  "'" + indic + "', "
+                                +  "'" + pmv.getLongitude() + "', "
+                                +  "'" + pmv.getLatitude() + "') ";
+            System.out.println(sqlquery);
             s.executeUpdate(sqlquery);
             
 
         }catch(SQLException e){
-            System.err.println("SQLException : error in adding Highscore");
-            System.err.println(e);
+            e.printStackTrace();
+
+        }
+    }
+    
+    public static void main(String args[]){
+        System.out.print(System.getProperty("user.dir" ));
+        PMVController pmvContr = new PMVController();
+        try {
+            pmvContr.importPMV();
+        } catch (IOException ex) {
+            Logger.getLogger(PMVController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

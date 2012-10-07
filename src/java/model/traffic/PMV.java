@@ -17,6 +17,13 @@ public class PMV {
     private float latitude;
 
     
+    public PMV(int id, String sens, boolean indic_temps, float longitude, float latitude){
+        this.id = id;
+        this.sens = sens;
+        this.indic_temps = indic_temps;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
     
     /**************************************************************************/
     /****                           Getters & Setters                      ****/
