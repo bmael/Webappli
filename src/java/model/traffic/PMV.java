@@ -110,5 +110,13 @@ public class PMV {
         this.latitude = latitude;
     }
 
+    @Override
+    public String toString(){        
+        String res = "Numéro : " + this.id;
+        res += " | Sens : " + this.sens;
+        res += " | Indique temps parcours : " + this.indic_temps;
+        
+        return res;    
+    }
     
 }
