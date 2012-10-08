@@ -5,21 +5,17 @@
 package utilities.dataBaseTools;
 
 import au.com.bytecode.opencsv.CSVReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import utilities.fileTools.Download;
 import utilities.fileTools.Zipette;
 
 /**
- *
+ * This class provides some methods to parse a csv file 
  * @author mael
  */
 public class Parser {
