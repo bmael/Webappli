@@ -10,7 +10,7 @@ TODO
 ----
 
 * See how to place markers according to the distance for the PMV. (Thanatos21 & Niiner)
-* See how it's possible to execute importPMV() once a day. (bmael)
+* See how it's possible to upgrade the importation to execute it once a day. (bmael)
 
 
 INFO
@@ -28,4 +28,6 @@ DONE
 * Create a method for upload the open data into our database. (bmael)
 * Upgrade loading of PMV in our database. New package in utilities to do this. (bmael)
 * Example of a servlet with code injection : display all the PMV into our database using the PMVController. (bmael)
+* Execute the importation of PMV into our database at a given date. (bmael)
+
 
