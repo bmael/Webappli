@@ -10,8 +10,7 @@ TODO
 ----
 
 * See how to place markers according to the distance for the PMV. (Thanatos21 & Niiner)
-* Upgrade loading of PMV in our database. (bmael)
-* See how can we see that the data that we have in our database are the most recent. (bmael)
+* See how it's possible to execute importPMV() once a day. (bmael)
 
 
 INFO
@@ -27,3 +26,5 @@ DONE
 * Software structure established
 * Create the database for application (create a table for PMV). (bmael)
 * Create a method for upload the open data into our database. (bmael)
+* Upgrade loading of PMV in our database. New package in utilities to do this. (bmael)
+
