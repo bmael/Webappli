@@ -27,4 +27,5 @@ DONE
 * Create the database for application (create a table for PMV). (bmael)
 * Create a method for upload the open data into our database. (bmael)
 * Upgrade loading of PMV in our database. New package in utilities to do this. (bmael)
+* Example of a servlet with code injection : display all the PMV into our database using the PMVController. (bmael)
 
