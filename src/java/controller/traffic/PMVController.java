@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.traffic.PMV;
-import utilities.Zipette;
-import utilities.Download;
+import utilities.fileTools.Download;
+import utilities.fileTools.Zipette;
 /**
  * Class to control a PMV on the database.
  * @author mael
