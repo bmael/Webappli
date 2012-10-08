@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -160,6 +161,23 @@ public class PMVController {
         }
     }
     
+    public List<PMV> getAll() throws SQLException{
+        List<PMV> pmvs = new ArrayList();
+        
+        Statement s = DataBaseManager.getInstance().getCon().createStatement();
+        String sqlquery = "SELECT * FROM Pmv;";
+        ResultSet res = s.executeQuery(sqlquery);
+        
+        while(res.next()){
+                pmvs.add(new PMV(res.getInt("numero"),res.getString("sens"),
+                                    res.getBoolean("indic_temps_parcours"),
+                                    res.getFloat("longitude"),
+                                    res.getFloat("latitude")));
+            }
+        
+        return pmvs;
+    }
+    
     public static void main(String args[]) throws MalformedURLException, FileNotFoundException, IOException{
 
         DataBaseManager.getInstance().clean("Pmv");
@@ -168,6 +186,11 @@ public class PMVController {
         try {
             pmvContr.importPMV2();
         } catch (IOException ex) {
+            Logger.getLogger(PMVController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            System.out.println(pmvContr.getAll().size());
+        } catch (SQLException ex) {
             Logger.getLogger(PMVController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
