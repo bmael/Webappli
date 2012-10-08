@@ -88,6 +88,12 @@ public class PMVController {
         return pmvs;
     }
 
+    public void removeAll() throws SQLException{
+        Statement s = DataBaseManager.getInstance().getCon().createStatement();
+        String sqlquery = "DELETE FROM Pmv;";
+        s.executeUpdate(sqlquery);
+    }
+    
     public static void main(String args[]){
 
         DataBaseManager.getInstance().clean("Pmv");
