@@ -4,6 +4,8 @@
  */
 package model.traffic;
 
+import java.util.List;
+
 /**
  * This class represent a PMV
  * @author mael
@@ -15,8 +17,8 @@ public class PMV {
     private boolean indic_temps;
     private float longitude;
     private float latitude;
-
-    
+    private List<Itinerary> itineraries;
+ 
     public PMV(int id, String sens, boolean indic_temps, float longitude, float latitude){
         this.id = id;
         this.sens = sens;
@@ -68,6 +70,14 @@ public class PMV {
     public float getLatitude() {
         return latitude;
     }
+    
+    /**
+     * Return the list of the itineraries displayed by the PMV
+     * @return itineraries  
+     */
+    public List<Itinerary> getItineraries() {
+        return itineraries;
+    }
 
     /**
      * Set the identification number of the PMV
@@ -109,6 +119,16 @@ public class PMV {
     public void setLatitude(float latitude) {
         this.latitude = latitude;
     }
+
+    /**
+     * Set the Itineraries displayed by the PMV
+     * @param itineraries 
+     */
+    public void setItineraries(List<Itinerary> itineraries) {
+        this.itineraries = itineraries;
+    }
+    
+    
 
     @Override
     public String toString(){        
