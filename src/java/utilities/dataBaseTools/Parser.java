@@ -60,6 +60,13 @@ public class Parser {
         return data;
     }
     
+    /**
+     * Test for the parser
+     * @param args
+     * @throws FileNotFoundException
+     * @throws MalformedURLException
+     * @throws IOException 
+     */
     public static void main(String args[]) throws 
             FileNotFoundException, MalformedURLException, IOException{
         Parser.extractData("http://data.nantes.fr/fileadmin/data/datastore/3-publication/mobilite/localisation_pmv/localisation_pmv_csv.zip");
