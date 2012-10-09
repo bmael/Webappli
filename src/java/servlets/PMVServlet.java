@@ -56,12 +56,18 @@ public class PMVServlet extends HttpServlet {
             
             try {
                 List<PMV> pmvs = pmvContr.getAll();
+                String codeJs = new String();
                 
-                out.println("Il y a " + pmvs.size() + " PMV dans notre base de données.<br/>");
+                //out.println("Il y a " + pmvs.size() + " PMV dans notre base de données.<br/>");
                 
                 for (PMV pmv:pmvs) {
-                    out.println(pmv.toString()+"<br/>");
+                    //out.println(pmv.toString()+"<br/>");
+                    codeJs += "my_marker = new mxn.Marker(new mxn.LatLonPoint(" + pmv.getLatitude() + "," + pmv.getLongitude() + "));";
+                    codeJs += "my_marker.setIcon('images/marker.png');";
+                    codeJs += "mapstraction.addMarker(my_marker);";
                 }
+                request.setAttribute("codeJs", codeJs);
+                request.getServletContext().getRequestDispatcher("/WEB-INF/map.jsp").forward(request, response);
             } catch (SQLException ex) {
                 Logger.getLogger(PMVServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
