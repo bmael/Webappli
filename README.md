@@ -28,7 +28,6 @@ DONE
 * Create a method for upload the open data into our database. (bmael)
 * Upgrade loading of PMV in our database. New package in utilities to do this. (bmael)
 * See how it's possible to upgrade the importation to execute it once a day. (bmael)
-
 * Example of a servlet with code injection : display all the PMV into our database using the PMVController. (bmael)
 * Execute the importation of PMV into our database at a given date. (bmael)
 * Create a table in our database to have all itinerary covered by PMVs. (bmael)
