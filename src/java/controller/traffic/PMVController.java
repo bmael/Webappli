@@ -18,7 +18,7 @@ import model.traffic.PMV;
 import utilities.dataBaseTools.Parser;
 
 /**
- * Class to control a PMV on the database.
+ * Class to control PMVs on the database.
  * @author mael
  */
 public class PMVController {

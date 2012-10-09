@@ -61,8 +61,8 @@ public class DataBaseManager {
         String sqlquery = "CREATE TABLE IF NOT EXISTS Itinerary"+
                             "(id INT,"
                             + "numero INT,"
-                            + "origine VARCHAR(20),"
-                            + "destination VARCHAR(20),"
+                            + "origine VARCHAR(100),"
+                            + "destination VARCHAR(100),"
                             + "PRIMARY KEY(id));";
         try{
             Statement stmt = con.createStatement();
