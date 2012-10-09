@@ -43,7 +43,8 @@ public class PeriodicImport {
   private DateFormat mediumDateFormat = 
     DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM);
 
-   @Schedule(second="*", minute="*", hour="*/24")
+
+   @Schedule(second="*", minute="*", hour="*/23")
    public void importEveryDay(){
        PMVController pmvContr = new PMVController();
         try {
