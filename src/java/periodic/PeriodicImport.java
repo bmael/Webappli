@@ -40,7 +40,7 @@ public class PeriodicImport implements TimedObject {
     DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM);
 
   @PostConstruct
-  public void creerTimer() {
+  public void createTimer() {
     Logger.getLogger(PeriodicImport.class.getName()).log(Level.INFO, 
       "Creation du Timer" + mediumDateFormat.format(new Date()));
     GregorianCalendar calend = 
