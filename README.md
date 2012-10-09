@@ -10,7 +10,8 @@ TODO
 ----
 
 * See how to place markers according to the distance for the PMV. (Thanatos21 & Niiner)
-* Create a table in our database to have all itinerary covered by PMVs. (bmael)
+* See with Thanatos21 and Niiner how interprete the intineraries according to the PMV whose display its.(bmael)
+
 
 INFO
 ----
@@ -30,5 +31,6 @@ DONE
 
 * Example of a servlet with code injection : display all the PMV into our database using the PMVController. (bmael)
 * Execute the importation of PMV into our database at a given date. (bmael)
-
+* Create a table in our database to have all itinerary covered by PMVs. (bmael)
+* Complete the PMV model to have itineraries displayed by a PMV. (bmael)
 
