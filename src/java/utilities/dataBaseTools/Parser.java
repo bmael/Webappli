@@ -49,7 +49,7 @@ public class Parser {
     public static List<String[]> extractData(String file) throws 
             FileNotFoundException, IOException, MalformedURLException{
                                          
-        CSVReader readerPmvs = new CSVReader(new FileReader(file),';',' ');
+        CSVReader readerPmvs = new CSVReader(new FileReader(file),';');
         List<String[] > data = new ArrayList<String[] >();
 
         String[] nextLine = readerPmvs.readNext();
