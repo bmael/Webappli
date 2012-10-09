@@ -19,9 +19,12 @@ import javax.annotation.PostConstruct;
 import javax.ejb.Timer;
 import javax.annotation.Resource;
 import javax.ejb.LocalBean;
+import javax.ejb.Schedule;
+import javax.ejb.ScheduleExpression;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.ejb.TimedObject;
+import javax.ejb.Timeout;
 import javax.ejb.TimerConfig;
 import javax.ejb.TimerService;
 
@@ -32,25 +35,17 @@ import javax.ejb.TimerService;
 @Singleton
 @Startup
 @LocalBean
-public class PeriodicImport implements TimedObject {
+public class PeriodicImport {
 
   @Resource
   TimerService timerService;
+  
   private DateFormat mediumDateFormat = 
     DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM);
 
-  @PostConstruct
-  public void createTimer() {
-    Logger.getLogger(PeriodicImport.class.getName()).log(Level.INFO, 
-      "Creation du Timer" + mediumDateFormat.format(new Date()));
-    GregorianCalendar calend = 
-      new GregorianCalendar(2012, GregorianCalendar.OCTOBER, 8, 23, 12, 0);
-    Timer timer = timerService.createSingleActionTimer(calend.getTime(), new TimerConfig());
-  }
-
-    @Override
-  public void ejbTimeout(Timer timer) {
-        PMVController pmvContr = new PMVController();
+   @Schedule(second="*", minute="*", hour="*/24")
+   public void importEveryDay(){
+       PMVController pmvContr = new PMVController();
         try {
             pmvContr.removeAll();
             pmvContr.importPMV();
@@ -63,5 +58,5 @@ public class PeriodicImport implements TimedObject {
         }
     Logger.getLogger(PeriodicImport.class.getName()).log(Level.INFO, 
       "Execution du traitement" + mediumDateFormat.format(new Date()));
-  }
+   }
 }
