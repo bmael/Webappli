@@ -34,6 +34,7 @@ public class DataBaseManager {
             
             //creates tables for the database
             createTablePMV();
+            createTableItinerary();
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,6 +49,21 @@ public class DataBaseManager {
                             + "longitude REAL,"
                             + "latitude REAL,"
                             + "PRIMARY KEY(numero));";
+        try{
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(sqlquery);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+     private void createTableItinerary(){
+        String sqlquery = "CREATE TABLE IF NOT EXISTS Itinerary"+
+                            "(id INT,"
+                            + "numero INT,"
+                            + "origine VARCHAR(20),"
+                            + "destination VARCHAR(20),"
+                            + "PRIMARY KEY(id));";
         try{
             Statement stmt = con.createStatement();
             stmt.executeUpdate(sqlquery);
@@ -77,14 +93,8 @@ public class DataBaseManager {
         return instance;   
     }
     
-    public static void main(String args[]){
-        
-        //here import the csv file to load it on the database 
-          
-        DataBaseManager.getInstance();
-        
-        
-        
+    public static void main(String args[]){      
+        DataBaseManager.getInstance();      
     }
 
 }
