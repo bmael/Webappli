@@ -31,7 +31,7 @@ public class PMVController {
      */
     public void importPMV() throws FileNotFoundException, IOException, SQLException {
 
-            List<String[]> data = Parser.extractData(
+            List<String[]> data = Parser.extractDataFromZip(
                             "http://data.nantes.fr/fileadmin/data/datastore/"+
                             "3-publication/mobilite/localisation_pmv/"+
                             "localisation_pmv_csv.zip");
@@ -96,9 +96,13 @@ public class PMVController {
     
     public static void main(String args[]){
 
-        DataBaseManager.getInstance().clean("Pmv");
         System.out.print(System.getProperty("user.dir" ));
         PMVController pmvContr = new PMVController();
+        try {
+            pmvContr.removeAll();
+        } catch (SQLException ex) {
+            Logger.getLogger(PMVController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             try {
                 pmvContr.importPMV();

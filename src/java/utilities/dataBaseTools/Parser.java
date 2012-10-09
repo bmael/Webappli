@@ -25,7 +25,7 @@ public class Parser {
      * @param url
      * @return List of data
      */
-    public static List<String[]> extractData(String url) throws 
+    public static List<String[]> extractDataFromZip(String url) throws 
             FileNotFoundException, IOException, MalformedURLException{
         
         Download.getFile(url);
@@ -38,7 +38,18 @@ public class Parser {
                 
         Zipette.extractTo(archiveName, csvName, System.getProperty("user.dir" )+"/");
             
-        CSVReader readerPmvs = new CSVReader(new FileReader(csvName),';',' ');
+        return extractData(csvName);
+    }
+    
+    /**
+     * Extract data from the file given in parameter
+     * @param file
+     * @return List of data
+     */
+    public static List<String[]> extractData(String file) throws 
+            FileNotFoundException, IOException, MalformedURLException{
+                                         
+        CSVReader readerPmvs = new CSVReader(new FileReader(file),';',' ');
         List<String[] > data = new ArrayList<String[] >();
 
         String[] nextLine = readerPmvs.readNext();
@@ -68,8 +79,8 @@ public class Parser {
      * @throws IOException 
      */
     public static void main(String args[]) throws 
-            FileNotFoundException, MalformedURLException, IOException{
-        Parser.extractData("http://data.nantes.fr/fileadmin/data/datastore/3-publication/mobilite/localisation_pmv/localisation_pmv_csv.zip");
+        FileNotFoundException, MalformedURLException, IOException{
+        Parser.extractDataFromZip("http://data.nantes.fr/fileadmin/data/datastore/3-publication/mobilite/localisation_pmv/localisation_pmv_csv.zip");
     }
     
 }
