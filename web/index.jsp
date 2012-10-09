@@ -25,7 +25,7 @@
                 <!-- Indications on the geolocation just for debug -->
                 <div id="geolocation"></div>
 
-                <!-- The map -->
+                <!-- The map from OpenStreetMap -->
                 <div id="top_map"></div>
                 <div id="map_container">
                     <div id="map"></div>
