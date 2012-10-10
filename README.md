@@ -10,7 +10,9 @@ TODO
 ----
 
 * See how to place markers according to the distance for the PMV. (Thanatos21 & Niiner)
-* See with Thanatos21 and Niiner how interprete the intineraries according to the PMV whose display its.(bmael)
+* Link ids in database.(bmael)
+* Create table for statistic into our database. (niiner)
+* Retrieve the displayed time for itineraries displayed by a PMV. (Thanatos21)
 
 
 INFO
