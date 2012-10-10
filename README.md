@@ -18,6 +18,7 @@ INFO
 ----
 
 * CSV library for JAVA : http://opencsv.sourceforge.net/#where-can-I-get-it
+* jdom-2.0.3 to download and add to libraries' project : http://www.jdom.org/downloads/index.html
 * Authentification key for our application on open data nantes : 4XTL4M0FTTASDFQ
 
 
@@ -35,5 +36,6 @@ DONE
 * Create a table in our database to have all itinerary covered by PMVs. (bmael)
 * Complete the PMV model to have itineraries displayed by a PMV. (bmael)
 * Link ids in database.(bmael)
+* XMLParser realized. (Niiner)
 
 
