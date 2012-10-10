@@ -36,12 +36,28 @@ public class DataBaseManager {
             createTablePMV();
             createTableItinerary();
             createTableLinkage();
+            createTableStatsPMV();
             
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-        
+    
+    private void createTableStatsPMV(){
+        String sqlquery = "CREATE TABLE IF NOT EXISTS StatsPMV"+
+                            "(id INT,"
+                            + "temps INT,"
+                            + "date DATE,"
+                            + "heure TIME,"
+                            + "PRIMARY KEY(id));";
+        try{
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(sqlquery);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+}
+    
     private void createTablePMV(){
         String sqlquery = "CREATE TABLE IF NOT EXISTS Pmv"+
                             "(numero INT,"
