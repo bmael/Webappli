@@ -44,20 +44,20 @@ public class PeriodicImport {
     DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM);
 
 
-   @Schedule(second="*", minute="*", hour="*/23")
-   public void importEveryDay(){
-       PMVController pmvContr = new PMVController();
-        try {
-            pmvContr.removeAll();
-            pmvContr.importPMV();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(PeriodicImport.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(PeriodicImport.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(PeriodicImport.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    Logger.getLogger(PeriodicImport.class.getName()).log(Level.INFO, 
-      "Execution du traitement" + mediumDateFormat.format(new Date()));
-   }
+//   @Schedule(second="*", minute="*", hour="*/23")
+//   public void importEveryDay(){
+//       PMVController pmvContr = new PMVController();
+//        try {
+//            pmvContr.removeAll();
+//            pmvContr.importPMV();
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(PeriodicImport.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(PeriodicImport.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(PeriodicImport.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    Logger.getLogger(PeriodicImport.class.getName()).log(Level.INFO, 
+//      "Execution du traitement" + mediumDateFormat.format(new Date()));
+//   }
 }
