@@ -35,6 +35,7 @@ public class DataBaseManager {
             //creates tables for the database
             createTablePMV();
             createTableItinerary();
+            createTableLinkage();
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,6 +65,19 @@ public class DataBaseManager {
                             + "origine VARCHAR(100),"
                             + "destination VARCHAR(100),"
                             + "PRIMARY KEY(id));";
+        try{
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(sqlquery);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+     
+    private void createTableLinkage(){
+        String sqlquery = "CREATE TABLE IF NOT EXISTS LinkagePMV"+
+                            "(idPMV INT,"
+                            + "idAPI INT,"
+                            + "PRIMARY KEY(idPMV));";
         try{
             Statement stmt = con.createStatement();
             stmt.executeUpdate(sqlquery);

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.traffic.Itinerary;
-import utilities.dataBaseTools.Parser;
+import utilities.dataBaseTools.ParserCSV;
 
 /**
  * Class to control Itineraries displayed by PMVs into our database
@@ -31,7 +31,7 @@ public class ItineraryController {
      */
     public void importItinerary() throws FileNotFoundException, IOException, SQLException {
 
-            List<String[]> data = Parser.extractData(System.getProperty("user.dir" )+"/itinerary.csv");
+            List<String[]> data = ParserCSV.extractData(System.getProperty("user.dir" )+"/itinerary.csv");
 
             for (String[] oneData : data) {
                 String id = oneData[0];

@@ -67,7 +67,7 @@ public class PMVServlet extends HttpServlet {
                     codeJs += "mapstraction.addMarker(my_marker);";
                 }
                 request.setAttribute("codeJs", codeJs);
-                request.getServletContext().getRequestDispatcher("/WEB-INF/map.jsp").forward(request, response);
+                request.getServletContext().getRequestDispatcher("/map.jsp").forward(request, response);
             } catch (SQLException ex) {
                 Logger.getLogger(PMVServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -15,7 +15,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.traffic.PMV;
-import utilities.dataBaseTools.Parser;
+import utilities.dataBaseTools.LinkagePMV;
+import utilities.dataBaseTools.ParserCSV;
 
 /**
  * Class to control PMVs on the database.
@@ -31,7 +32,7 @@ public class PMVController {
      */
     public void importPMV() throws FileNotFoundException, IOException, SQLException {
 
-            List<String[]> data = Parser.extractDataFromZip(
+            List<String[]> data = ParserCSV.extractDataFromZip(
                             "http://data.nantes.fr/fileadmin/data/datastore/"+
                             "3-publication/mobilite/localisation_pmv/"+
                             "localisation_pmv_csv.zip");
@@ -51,6 +52,7 @@ public class PMVController {
 
                 this.add(pmv);
             }
+            LinkagePMV.ImportLinkage();
     }
 
     /**
