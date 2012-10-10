@@ -19,6 +19,7 @@ INFO
 ----
 
 * CSV library for JAVA : http://opencsv.sourceforge.net/#where-can-I-get-it
+* Authentification key for our application on open data nantes : 4XTL4M0FTTASDFQ
 
 
 DONE
