@@ -15,6 +15,7 @@ import org.jdom2.input.*;
 import org.jdom2.xpath.XPath;
 
 
+
 /**
  *
  * @author niiner
@@ -50,7 +51,8 @@ public class ParserXML {
         }
         
         return extractData("itinerary.xml");
-    }
+        
+}
 
     /**
      * Extract data from the file given in parameter
@@ -61,7 +63,7 @@ public class ParserXML {
             FileNotFoundException, IOException, MalformedURLException, JDOMException{
 
           
-        List<String[] > data = new ArrayList<String[] >();
+        ArrayList<String[]>datas = new ArrayList<String[]>();
 
         //On crée une instance de SAXBuilder
         SAXBuilder sxb = new SAXBuilder();
@@ -74,10 +76,10 @@ public class ParserXML {
          //Initialisation d'un nouvel élément racine avec l'élément racine du document.
         racine = document.getRootElement();
 
-        List <Element> lgs;
-        lgs = (List <Element>)XPath.selectNodes(document, "opendata/answer/data/Itineraires/Itineraire");
+        List <Element> lgs = (List <Element>)XPath.selectNodes(document, "opendata/answer/data/Itineraires/Itineraire");
         Iterator i = lgs.iterator();
 
+        int parcours = 0;
         while(i.hasNext())
         {
         //On recrée l'Element courant à chaque tour de boucle afin de
@@ -85,13 +87,23 @@ public class ParserXML {
         //selectionner un noeud fils, modifier du texte, etc...
         Element courant = (Element)i.next();
         //On affiche le nom de l'element courant
-        System.out.println(courant.getChild("Identifiant").getText());
-        System.out.println(courant.getChild("Temps").getText());
-        System.out.println(courant.getChild("Horodatage").getText());                     
-        }
-
-        return null;
-    }
+        
+        String id = courant.getChild("Identifiant").getText();
+        String temps = courant.getChild("Temps").getText();
+        String date = courant.getChild("Horodatage").getText();
+        
+        String[] line = new String[3];
+        line[0] = id;
+        line[1] = temps;
+        line[2] = date;
+        
+        datas.add(line);
+        
+    
+        } 
+        
+        return datas;
+}
 
 
 
