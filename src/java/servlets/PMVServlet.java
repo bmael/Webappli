@@ -64,7 +64,10 @@ public class PMVServlet extends HttpServlet {
                     //out.println(pmv.toString()+"<br/>");
                     codeJs += "my_marker = new mxn.Marker(new mxn.LatLonPoint(" + pmv.getLatitude() + "," + pmv.getLongitude() + "));";
                     codeJs += "my_marker.setIcon('images/marker.png');";
+                    codeJs += "my_marker.setInfoDiv('plop','info');";
                     codeJs += "mapstraction.addMarker(my_marker);";
+                    
+//                    codeJs += "mapstraction.addMarker(my_marker);";
                 }
                 request.setAttribute("codeJs", codeJs);
                 request.getServletContext().getRequestDispatcher("/map.jsp").forward(request, response);

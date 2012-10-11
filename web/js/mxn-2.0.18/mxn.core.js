@@ -1463,7 +1463,9 @@ mxn.addProxyMethods(Marker, [
 	 * @name mxn.Marker#update
 	 * @function
 	 */
-	'update'
+	'update',
+        
+        'info'
 ]);
 
 Marker.prototype.setChild = function(some_proprietary_marker) {

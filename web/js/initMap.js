@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-var mapstraction = new mxn.Mapstraction('map','openlayers');
+var mapstraction = new mxn.Mapstraction('map','openlayers',true);
 
 if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(

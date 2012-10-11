@@ -10,12 +10,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="style/global.css">
-        <title>Our Web Application</title>
+        <title>Stat' My Way</title>
     </head>
     <body>
         <div id="top_banner"></div>
         <div id="banner">
-            <h1>Our Web Application</h1>
+            <h1>Stat' My Way</h1>
         </div>
         <div id="bottom_banner"></div>
         

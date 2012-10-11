@@ -540,8 +540,14 @@ mxn.register('openlayers', {
 			}
 
 			if(this.infoDiv){
-				// TODO
+                            //Todo
+                            marker.events.register("click", marker, function(event) {
+                                    //alert("plop");
+                                  document.getElementById('info').innerHTML = "plop";
+				});
 			}
+                        
+                        
 			return marker;
 		},
 
@@ -580,6 +586,8 @@ mxn.register('openlayers', {
 		update: function() {
 			// TODO: Add provider code
 		}
+                
+                
 
 	},
 
