@@ -6,8 +6,10 @@ package periodic;
 
 
 import controller.traffic.PMVController;
+import controller.traffic.StatsPMVController;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -27,6 +29,7 @@ import javax.ejb.TimedObject;
 import javax.ejb.Timeout;
 import javax.ejb.TimerConfig;
 import javax.ejb.TimerService;
+import org.jdom2.JDOMException;
 
 /**
  *
@@ -60,4 +63,11 @@ public class PeriodicImport {
 //    Logger.getLogger(PeriodicImport.class.getName()).log(Level.INFO, 
 //      "Execution du traitement" + mediumDateFormat.format(new Date()));
 //   }
+  
+
+/* TODO : A schedule with an import of ItineraryStats every 15mn */
+//   @Schedule(second="*/01", minute="*/15", hour="*")
+
+  
+  
 }
