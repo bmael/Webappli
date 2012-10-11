@@ -17,8 +17,8 @@ import org.jdom2.xpath.XPath;
 
 
 /**
- *
- * @author niiner
+ * This class provides some methods to parse an XML file 
+ * @author Niiner
  */
 public class ParserXML {
 
@@ -26,7 +26,7 @@ public class ParserXML {
     static Element racine;
 
     /**
-     * Extract data from the zip file at the url given in parameter
+     * Extract data from the xml file at the url given in parameter
      * @param url
      * @return List of data
      */
@@ -50,8 +50,7 @@ public class ParserXML {
             System.out.println("Erreur : " + e);
         }
         
-        return extractData("itinerary.xml");
-        
+        return extractData("itinerary.xml");     
 }
 
     /**
@@ -62,44 +61,34 @@ public class ParserXML {
     public static List<String[]> extractData(String file) throws 
             FileNotFoundException, IOException, MalformedURLException, JDOMException{
 
-          
         ArrayList<String[]>datas = new ArrayList<String[]>();
 
-        //On crée une instance de SAXBuilder
         SAXBuilder sxb = new SAXBuilder();
         try
         {
-        document = sxb.build(new File(file));
+            document = sxb.build(new File(file));
         }
         catch(Exception e){e.printStackTrace();}     
 
-         //Initialisation d'un nouvel élément racine avec l'élément racine du document.
+        //We start to the root of the XML document, taking data in nodes
         racine = document.getRootElement();
-
         List <Element> lgs = (List <Element>)XPath.selectNodes(document, "opendata/answer/data/Itineraires/Itineraire");
         Iterator i = lgs.iterator();
 
-        int parcours = 0;
         while(i.hasNext())
         {
-        //On recrée l'Element courant à chaque tour de boucle afin de
-        //pouvoir utiliser les méthodes propres aux Element comme :
-        //selectionner un noeud fils, modifier du texte, etc...
-        Element courant = (Element)i.next();
-        //On affiche le nom de l'element courant
-        
-        String id = courant.getChild("Identifiant").getText();
-        String temps = courant.getChild("Temps").getText();
-        String date = courant.getChild("Horodatage").getText();
-        
-        String[] line = new String[3];
-        line[0] = id;
-        line[1] = temps;
-        line[2] = date;
-        
-        datas.add(line);
-        
-    
+            Element courant = (Element)i.next();
+
+            String id = courant.getChild("Identifiant").getText();
+            String temps = courant.getChild("Temps").getText();
+            String date = courant.getChild("Horodatage").getText();
+
+            String[] line = new String[3];
+            line[0] = id;
+            line[1] = temps;
+            line[2] = date;
+
+            datas.add(line);      
         } 
         
         return datas;
@@ -113,11 +102,12 @@ public class ParserXML {
      * @param args
      * @throws FileNotFoundException
      * @throws MalformedURLException
+     * @throws IOException
+     * @throws JDOMException
      * @throws IOException 
      */
     public static void main(String args[]) throws 
         FileNotFoundException, MalformedURLException, IOException, JDOMException{
-        
         ParserXML.extractDataFromAPI("http://data.nantes.fr/api/getTempsParcours/1.0/4XTL4M0FTTASDFQ");
    }
 

@@ -15,24 +15,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.traffic.Itinerary;
 import model.traffic.ItineraryStats;
-import model.traffic.PMV;
 import org.jdom2.JDOMException;
-import utilities.dataBaseTools.LinkagePMV;
-import utilities.dataBaseTools.ParserCSV;
 import utilities.dataBaseTools.ParserXML;
-//import utilities.fileTools.ItineraryBD;
 
 /**
  *
- * @author niiner
+ * @author Niiner
  */
 public class StatsPMVController {
    /**
      * Import all the Itinarery information (for stats) from the open data of nantes on the database
      * @throws FileNotFoundException
      * @throws IOException
+     * @throws MalformedURLException
+     * @throws JDOMException
      * @throws SQLException
      */
     public void importAPI() throws FileNotFoundException, IOException, SQLException, MalformedURLException, JDOMException {
@@ -51,20 +48,23 @@ public class StatsPMVController {
                 ItineraryStats it = new ItineraryStats(Integer.parseInt(id), Integer.parseInt(time), date, hour);
                 it.setDate(it.reverseDate(date));
                 
-                System.out.println(it.getDate());
                 this.add(it);               
           }
     }
 
-    
-    public void add(ItineraryStats itineraryBD) throws SQLException{
+    /**
+     * Add the itineraryStats to the database.
+     * @throws SQLException
+     * @param itineraryStats
+     */
+    public void add(ItineraryStats itineraryStats) throws SQLException{
     
         Statement s = DataBaseManager.getInstance().getCon().createStatement();
             String sqlquery = "INSERT INTO StatsPMV (id, time, dateD, hourH)"
-                                + "VALUES('"+ itineraryBD.getId() + "', "
-                                +  "'" + itineraryBD.getTime() + "', "
-                                +  "'" + itineraryBD.getDate() + "', "
-                                +  "'" + itineraryBD.getHour() + "') ";
+                                + "VALUES('"+ itineraryStats.getId() + "', "
+                                +  "'" + itineraryStats.getTime() + "', "
+                                +  "'" + itineraryStats.getDate() + "', "
+                                +  "'" + itineraryStats.getHour() + "') ";
             System.out.println(sqlquery);
             s.executeUpdate(sqlquery);
        
@@ -87,6 +87,10 @@ public class StatsPMVController {
  
     }
 
+    /**
+     * Delete ALL the itineraryStats in the database.
+     * @throws SQLException
+     */
     public void removeAll() throws SQLException{
         Statement s = DataBaseManager.getInstance().getCon().createStatement();
         String sqlquery = "DELETE FROM StatsPMV;";
