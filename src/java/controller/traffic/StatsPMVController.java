@@ -15,11 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.traffic.Itinerary;
+import model.traffic.ItineraryStats;
 import model.traffic.PMV;
 import org.jdom2.JDOMException;
 import utilities.dataBaseTools.LinkagePMV;
 import utilities.dataBaseTools.ParserCSV;
 import utilities.dataBaseTools.ParserXML;
+//import utilities.fileTools.ItineraryBD;
 
 /**
  *
@@ -27,30 +30,60 @@ import utilities.dataBaseTools.ParserXML;
  */
 public class StatsPMVController {
    /**
-     * Import all the PMV from the open data of nantes on the database
+     * Import all the Itinarery information (for stats) from the open data of nantes on the database
      * @throws FileNotFoundException
      * @throws IOException
      * @throws SQLException
      */
-    public void importPMV() throws FileNotFoundException, IOException, SQLException, MalformedURLException, JDOMException {
+    public void importAPI() throws FileNotFoundException, IOException, SQLException, MalformedURLException, JDOMException {
 
             List<String[]> data = ParserXML.extractDataFromAPI(
                     "http://data.nantes.fr/api/getTempsParcours/1.0/4XTL4M0FTTASDFQ");
 
-           
+            for (String[] oneData : data) {                             
+                
+                String id = oneData[0];
+                String time = oneData[1];
+                String date = oneData[2].substring(0,10);
+                String hour = oneData[2].substring(11,(oneData[2].length()));
+               
+              
+                ItineraryStats it = new ItineraryStats(Integer.parseInt(id), Integer.parseInt(time), date, hour);
+                it.setDate(it.reverseDate(date));
+                
+                System.out.println(it.getDate());
+                this.add(it);               
+          }
     }
 
-    /**
-     * Add the PMV to the database.
-     * @param pmv
-     */
-    public void add(PMV pmv) throws SQLException{
-
+    
+    public void add(ItineraryStats itineraryBD) throws SQLException{
+    
+        Statement s = DataBaseManager.getInstance().getCon().createStatement();
+            String sqlquery = "INSERT INTO StatsPMV (id, time, dateD, hourH)"
+                                + "VALUES('"+ itineraryBD.getId() + "', "
+                                +  "'" + itineraryBD.getTime() + "', "
+                                +  "'" + itineraryBD.getDate() + "', "
+                                +  "'" + itineraryBD.getHour() + "') ";
+            System.out.println(sqlquery);
+            s.executeUpdate(sqlquery);
        
     }
 
-    public List<PMV> getAll() throws SQLException{
- return null;
+    public List<ItineraryStats> getAll() throws SQLException{
+        
+    List<ItineraryStats> itineraries = new ArrayList();
+
+        Statement s = DataBaseManager.getInstance().getCon().createStatement();
+        String sqlquery = "SELECT * FROM StatsPMV;";
+        ResultSet res = s.executeQuery(sqlquery);
+
+        while(res.next()){
+                itineraries.add(new ItineraryStats(res.getInt("id"),res.getInt("time"), res.getString("dateD"), res.getString("hourH")));
+        }                          
+    
+
+        return itineraries;
  
     }
 
@@ -71,7 +104,7 @@ public class StatsPMVController {
         }
         try {
             try {
-                pmvContr.importPMV();
+                pmvContr.importAPI();
             } catch (SQLException ex) {
                 Logger.getLogger(StatsPMVController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -84,6 +117,8 @@ public class StatsPMVController {
             Logger.getLogger(StatsPMVController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+
 
 
 }
