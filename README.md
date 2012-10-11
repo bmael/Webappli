@@ -10,7 +10,6 @@ TODO
 ----
 
 * See how to place markers according to the distance for the PMV. (Thanatos21 & Niiner)
-* Create table for statistic into our database. (niiner)
 * Retrieve the displayed time for itineraries displayed by a PMV. (Thanatos21)
 
 
@@ -37,5 +36,6 @@ DONE
 * Complete the PMV model to have itineraries displayed by a PMV. (bmael)
 * Link ids in database.(bmael)
 * XMLParser realized. (Niiner)
+* Create table for statistic into our database. (niiner)
 
 
