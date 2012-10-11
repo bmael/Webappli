@@ -46,9 +46,9 @@ public class DataBaseManager {
     private void createTableStatsPMV(){
         String sqlquery = "CREATE TABLE IF NOT EXISTS StatsPMV"+
                             "(id INT,"
-                            + "temps INT,"
-                            + "date DATE,"
-                            + "heure TIME,"
+                            + "time INT,"
+                            + "dateD DATE,"
+                            + "hourH TIME,"
                             + "PRIMARY KEY(id));";
         try{
             Statement stmt = con.createStatement();
