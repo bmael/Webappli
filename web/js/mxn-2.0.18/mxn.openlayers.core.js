@@ -542,9 +542,8 @@ mxn.register('openlayers', {
 			if(this.infoDiv){
                             //Todo
                             marker.events.register("click", marker, function(event) {
-                                    //alert("plop");
-                                  document.getElementById('info').innerHTML = "plop";
-				});
+                                document.getElementById(this.div).innerHTML = this.infoDiv;
+                            });
 			}
                         
                         

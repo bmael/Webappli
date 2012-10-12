@@ -17,7 +17,7 @@ if(navigator.geolocation) {
             mapstraction.setCenterAndZoom(myPoint, 13);
             my_marker = new mxn.Marker(myPoint);
             //Temporary icon
-            my_marker.setIcon('http://harrywood.co.uk/maps/examples/openlayers/img/marker.png');
+            //my_marker.setIcon('http://harrywood.co.uk/maps/examples/openlayers/img/marker.png');
             mapstraction.addMarker(my_marker);
         })
 } else {

@@ -5,8 +5,10 @@
 package servlets;
 
 import controller.traffic.PMVController;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -18,6 +20,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.traffic.PMV;
+import org.jdom2.JDOMException;
+import utilities.dataBaseTools.ParserXML;
 
 /**
  *
@@ -58,20 +62,29 @@ public class PMVServlet extends HttpServlet {
                 List<PMV> pmvs = pmvContr.getAll();
                 String codeJs = new String();
                 
-                //out.println("Il y a " + pmvs.size() + " PMV dans notre base de données.<br/>");
+                List<String[]> datAPI = ParserXML.extractDataFromAPI("http://data.nantes.fr/api/getTempsParcours/1.0/4XTL4M0FTTASDFQ");
                 
+                int i = 0;
                 for (PMV pmv:pmvs) {
-                    //out.println(pmv.toString()+"<br/>");
-                    codeJs += "my_marker = new mxn.Marker(new mxn.LatLonPoint(" + pmv.getLatitude() + "," + pmv.getLongitude() + "));";
-                    codeJs += "my_marker.setIcon('images/marker.png');";
-                    codeJs += "my_marker.setInfoDiv('plop','info');";
-                    codeJs += "mapstraction.addMarker(my_marker);";
-                    
-//                    codeJs += "mapstraction.addMarker(my_marker);";
+                    if ( pmv.isIndic_temps() ) {
+                        codeJs += "my_marker = new mxn.Marker(new mxn.LatLonPoint(" + pmv.getLatitude() + "," + pmv.getLongitude() + "));";
+                        codeJs += "my_marker.setIcon('images/marker.png');";
+                        codeJs += "my_marker.setInfoDiv('<h2>Informations</h2><p>" + datAPI.get(i)[1] + " minutes</p>','info');";
+                        codeJs += "my_marker.setInfoBubble('<h2>Informations</h2><p>" + datAPI.get(i)[1] + " minutes</p>','info');";
+                        codeJs += "mapstraction.addMarker(my_marker);";
+                        
+                        i++;
+                    }
                 }
                 request.setAttribute("codeJs", codeJs);
                 request.getServletContext().getRequestDispatcher("/map.jsp").forward(request, response);
-            } catch (SQLException ex) {
+            }       catch (FileNotFoundException ex) {
+                        Logger.getLogger(PMVServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (MalformedURLException ex) {
+                        Logger.getLogger(PMVServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (JDOMException ex) {
+                        Logger.getLogger(PMVServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
                 Logger.getLogger(PMVServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             
