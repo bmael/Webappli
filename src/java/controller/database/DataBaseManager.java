@@ -114,7 +114,7 @@ public class DataBaseManager {
     }
     
     public static void main(String args[]){      
-        DataBaseManager.getInstance();      
+        DataBaseManager.getInstance();
     }
 
 }

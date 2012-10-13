@@ -464,6 +464,7 @@ mxn.register('openlayers', {
 	Marker: {
 
 		toProprietary: function() {
+                        var me = this;
 			var size, anchor, popup;
 			if(this.iconSize) {
 				size = new OpenLayers.Size(this.iconSize[0], this.iconSize[1]);
@@ -542,7 +543,7 @@ mxn.register('openlayers', {
 			if(this.infoDiv){
                             //Todo
                             marker.events.register("click", marker, function(event) {
-                                document.getElementById(this.div).innerHTML = this.infoDiv;
+                                document.getElementById(me.div).innerHTML = me.infoDiv;
                             });
 			}
                         
