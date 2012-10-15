@@ -21,6 +21,7 @@ INFO
 * jdom-2.0.3 to download and add to libraries' project : http://www.jdom.org/downloads/index.html
 * Authentification key for our application on open data nantes : 4XTL4M0FTTASDFQ
 * fixed schedule bug with glassfish : set server.ejb-container.property.disable-nonportable-jndi-names="true" on ./asadmin
+* Very Good tuto on http://jmvanel.free.fr/java/formation-ird3/jfreechart.pdf
 
 
 DONE
