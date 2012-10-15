@@ -31,10 +31,12 @@ public class PMVController {
      */
     public void importPMV() throws FileNotFoundException, IOException, SQLException {
 
-            List<String[]> data = ParserCSV.extractDataFromZip(
-                            "http://data.nantes.fr/fileadmin/data/datastore/"+
-                            "3-publication/mobilite/localisation_pmv/"+
-                            "localisation_pmv_csv.zip");
+//            List<String[]> data = ParserCSV.extractDataFromZip(
+//                            "http://data.nantes.fr/fileadmin/data/datastore/"+
+//                            "3-publication/mobilite/localisation_pmv/"+
+//                            "localisation_pmv_csv.zip");
+                   List<String[]> data = ParserCSV.extractData(System.getProperty("user.dir")+"/localisation_pmv.csv");
+
 
             for (String[] oneData : data) {
                 String id = oneData[0].replace(',', '.');

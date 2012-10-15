@@ -101,11 +101,7 @@ public class StatsPMVController {
 
         System.out.print(System.getProperty("user.dir" ));
         StatsPMVController pmvContr = new StatsPMVController();
-        try {
-            pmvContr.removeAll();
-        } catch (SQLException ex) {
-            Logger.getLogger(StatsPMVController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
         try {
             try {
                 pmvContr.importAPI();

@@ -80,8 +80,8 @@ public class ParserCSV {
      */
     public static void main(String args[]) throws 
         FileNotFoundException, MalformedURLException, IOException{
-        ParserCSV.extractDataFromZip("http://data.nantes.fr/fileadmin/data/datastore/3-publication/mobilite/localisation_pmv/localisation_pmv_csv.zip");
-        
+//        ParserCSV.extractDataFromZip("http://data.nantes.fr/fileadmin/data/datastore/3-publication/mobilite/localisation_pmv/localisation_pmv_csv.zip");
+        ParserCSV.extractData(System.getProperty("user.dir")+"/localisation_pmv.csv");
     }
     
 }

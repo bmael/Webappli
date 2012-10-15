@@ -69,7 +69,7 @@ public class PMVServlet extends HttpServlet {
                 
                 int i = 0;
                 for (PMV pmv:pmvs) {
-                    if ( pmv.isIndic_temps() ) {
+                    if ( pmv.isIndic_temps() && datas.size()!=0 ) {
                         codeJs += "my_marker = new mxn.Marker(new mxn.LatLonPoint(" + pmv.getLatitude() + "," + pmv.getLongitude() + "));";
                         codeJs += "my_marker.setIcon('images/marker.png');";
                         codeJs += "my_marker.setInfoDiv('<h2>Informations</h2><p>" + datas.get(i).getTime() + " minutes</p>','info');";

@@ -48,8 +48,8 @@ public class DataBaseManager {
                             "(id INT,"
                             + "time INT,"
                             + "dateD DATE,"
-                            + "hourH TIME,"
-                            + "PRIMARY KEY(id));";
+                            + "hourH TIME"
+                            + ");";
         try{
             Statement stmt = con.createStatement();
             stmt.executeUpdate(sqlquery);
