@@ -59,11 +59,7 @@ public class PeriodicImport {
  @Schedule(second="*",minute="*/5", hour="*", persistent = false)
    public void importStatsEvery10Min(){
        StatsPMVController pmvContr = new StatsPMVController();
-        try {
-            pmvContr.removeAll();
-        } catch (SQLException ex) {
-            Logger.getLogger(PeriodicImport.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
         try {
             pmvContr.importAPI();
         } catch (FileNotFoundException ex) {
