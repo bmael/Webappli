@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +22,7 @@ import utilities.dataBaseTools.ParserXML;
 
 /**
  *
- * @author Niiner
+ * @author Niiner, mael
  */
 public class StatsPMVController {
    /**
@@ -70,6 +71,11 @@ public class StatsPMVController {
        
     }
 
+    /**
+     * Return all the ItineraryStats from our database.
+     * @return a List of ItineraryStats
+     * @throws SQLException 
+     */
     public List<ItineraryStats> getAll() throws SQLException{
         
     List<ItineraryStats> itineraries = new ArrayList();
@@ -79,12 +85,40 @@ public class StatsPMVController {
         ResultSet res = s.executeQuery(sqlquery);
 
         while(res.next()){
-                itineraries.add(new ItineraryStats(res.getInt("id"),res.getInt("time"), res.getString("dateD"), res.getString("hourH")));
+                itineraries.add(new ItineraryStats(res.getInt("id"),res.getInt("time"),
+                                res.getString("dateD"), res.getString("hourH")));
         }                          
     
 
         return itineraries;
  
+    }
+    
+    /**
+     * Return all ItineraryStats from our databse between the two Dates given on parameter
+     * whose have the given id 
+     * @return a List of ItineraryStats
+     * @throws SQLException 
+     */
+    public List<ItineraryStats>getItinerariesStats(int id, String d1, String d2) throws SQLException{
+        
+        List <ItineraryStats> liRes = new ArrayList();
+        
+        Statement s = DataBaseManager.getInstance().getCon().createStatement();
+        String sqlquery = "SELECT * FROM StatsPMV "
+                        + "WHERE id='"
+                        + id + "' "
+                        + "AND dateD>='" + d1 + "' "
+                        + "AND dateD<='" + d2 + "';";
+        ResultSet res = s.executeQuery(sqlquery);
+        
+        while(res.next()){
+                liRes.add(new ItineraryStats(res.getInt("id"),res.getInt("time"),
+                                res.getString("dateD"), res.getString("hourH")));
+        }
+        
+        return liRes;
+        
     }
 
     /**
@@ -92,30 +126,27 @@ public class StatsPMVController {
      * @throws SQLException
      */
     public void removeAll() throws SQLException{
+        
         Statement s = DataBaseManager.getInstance().getCon().createStatement();
         String sqlquery = "DELETE FROM StatsPMV;";
         s.executeUpdate(sqlquery);
+        
     }
     
     public static void main(String args[]) throws FileNotFoundException, MalformedURLException, MalformedURLException, JDOMException, JDOMException{
-
-        System.out.print(System.getProperty("user.dir" ));
+        
         StatsPMVController pmvContr = new StatsPMVController();
 
         try {
-            try {
-                pmvContr.importAPI();
-            } catch (SQLException ex) {
-                Logger.getLogger(StatsPMVController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(StatsPMVController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
             System.out.println(pmvContr.getAll().size());
+            for(ItineraryStats it : pmvContr.getItinerariesStats(11, "2012-10-15", "2012-10-15")) {
+                System.out.println(it.toString());
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(StatsPMVController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 
 

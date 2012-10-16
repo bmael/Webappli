@@ -80,6 +80,20 @@ public class ItineraryStats {
         return modifiedDate;
     }
     
+    @Override
+    public String toString(){
+        
+        String res = "";
+        
+        res+= "----------------------------\n";
+        res+= "id : " + id + "\n";
+        res+= "time : " + time + "\n";
+        res+= "dateD : " + dateD + "\n";
+        res+= "hourH : " + hourH + "\n";
+        
+        return res;
+    }
+    
     
 }
 
