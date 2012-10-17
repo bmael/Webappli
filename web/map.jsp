@@ -8,18 +8,49 @@
 <!DOCTYPE html>
 <html>
     <head>
+                
+        <title>Stat' My Way</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="style/global.css">
         
         <!-- Add JQuery -->
-        <script type="text/javascript" src="js/jquery/jquery-1.8.2.js"></script>
+        <script type="text/javascript" src="js/jquery/fancyapps-fancyBox-902ef92/lib/jquery-1.8.2.min.js"></script>
         
-        <!-- Add FancyBox -->
-        <script type="text/javascript" src="js/jquery/fancyapps-fancyBox-902ef92/source/jquery.fancybox.js"></script>
+        <!-- Add mousewheel plugin (this is optional) -->
+        <script type="text/javascript" src="js/jquery/fancyapps-fancyBox-902ef92/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="js/jquery/fancyapps-fancyBox-902ef92/source/jquery.fancybox.js?v=2.1.2"></script>
+	<link rel="stylesheet" type="text/css" href="js/jquery/fancyapps-fancyBox-902ef92/source/jquery.fancybox.css?v=2.1.2" media="screen" />
+
+	<!-- Add Button helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="js/jquery/fancyapps-fancyBox-902ef92/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+	<script type="text/javascript" src="js/jquery/fancyapps-fancyBox-902ef92/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+
+	<!-- Add Thumbnail helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="js/jquery/fancyapps-fancyBox-902ef92/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+	<script type="text/javascript" src="js/jquery/fancyapps-fancyBox-902ef92/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+	<!-- Add Media helper (this is optional) -->
+	<script type="text/javascript" src="js/jquery/fancyapps-fancyBox-902ef92/source/helpers/jquery.fancybox-media.js?v=1.0.4"></script>
         
-        <link type="text/css" rel="stylesheet" href="js/jquery/fancyapps-fancyBox-902ef92/source/jquery.fancybox.css"/>
-        
-        <title>Stat' My Way</title>
+        <script type="text/javascript">
+                $(document).ready(function() {
+			/*
+			 *  Simple image gallery. Uses default settings
+			 */
+			$("#iframe").click(function() {
+				$.fancybox.open({
+					href : 'stat.jsp',
+					type : 'iframe',
+					padding : 5
+				});
+                        });
+
+                });
+
+         </script>
+
     </head>
     <body>
         <div id="top_banner"></div>
@@ -65,12 +96,8 @@
                 
                 <!-- The information div (where we will display pmv content) -->
                 <div id="top_info_stat_box">
-                    <h2>Informations&nbsp;&nbsp;<a class="various" rel="group" href="stat.jsp">Statistiques</a></h2>
-                    <script type="text/javascript">
-                           $(document).ready(function() {
-                               $(".various").fancybox();
-                            });
-                    </script>
+                    <h2>Informations&nbsp;&nbsp;<a id="iframe" rel="nofollow" href="javascript:;">Statistiques</a></h2>
+                    
                 </div>
                 <div id="info">
                     <p>
