@@ -19,6 +19,14 @@ public class PMV {
     private float latitude;
     private List<Itinerary> itineraries;
  
+    /**
+     * Construc a PMV.
+     * @param id the id of the PMV
+     * @param sens the direction of the PMV 'S' = going out of the city or 'E' = in the direction of the city
+     * @param indic_temps true if the PMV is displaying a time for an itinerary, false otherwise
+     * @param longitude longitude of the PMV
+     * @param latitude  latitude of the PMV
+     */
     public PMV(int id, String sens, boolean indic_temps, float longitude, float latitude){
         this.id = id;
         this.sens = sens;
@@ -31,7 +39,7 @@ public class PMV {
     /****                           Getters & Setters                      ****/
     /**************************************************************************/
     /**
-     * Return the identification number of the PMV
+     * Return the identification number of the PMV.
      * @return id
      */
     public int getId() {
@@ -40,15 +48,15 @@ public class PMV {
 
     /**
      * Return the direction of the PMV : 'E'= In the direction of the city center
-     *  'S' = Going out of the city
-     * @return sens
+     *  'S' = Going out of the city.
+     * @return sens 
      */
     public String getSens() {
         return sens;
     }
 
     /**
-     * Return true if the PMV indicate the time, false otherwise
+     * Return true if the PMV indicate the time, false otherwise.
      * @return indic_temps
      */
     public boolean isIndic_temps() {
@@ -56,7 +64,7 @@ public class PMV {
     }
 
     /**
-     * Return the longitude of the PMV
+     * Return the longitude of the PMV.
      * @return longitude
      */
     public float getLongitude() {
@@ -64,7 +72,7 @@ public class PMV {
     }
 
     /**
-     * Return the latitude of the PMV
+     * Return the latitude of the PMV.
      * @return latitude
      */
     public float getLatitude() {
@@ -72,7 +80,7 @@ public class PMV {
     }
     
     /**
-     * Return the list of the itineraries displayed by the PMV
+     * Return the list of the itineraries displayed by the PMV.
      * @return itineraries  
      */
     public List<Itinerary> getItineraries() {
@@ -80,7 +88,7 @@ public class PMV {
     }
 
     /**
-     * Set the identification number of the PMV
+     * Set the identification number of the PMV.
      * @param id
      */
     public void setId(int id) {
@@ -89,7 +97,7 @@ public class PMV {
 
     /**
      * Set the Sense of the PMV 'E'= In the direction of the city center
-     *  'S' = Going out of the city
+     *  'S' = Going out of the city.
      * @param sens
      */
     public void setSens(String sens) {
@@ -97,7 +105,7 @@ public class PMV {
     }
 
     /**
-     * Set true if the PMV indicate the time, false otherwise
+     * Set true if the PMV indicate the time, false otherwise.
      * @param indic_temps
      */
     public void setIndic_temps(boolean indic_temps) {
@@ -105,7 +113,7 @@ public class PMV {
     }
 
     /**
-     * Set the longitude of the PMV
+     * Set the longitude of the PMV.
      * @param longitude
      */
     public void setLongitude(float longitude) {
@@ -113,7 +121,7 @@ public class PMV {
     }
 
     /**
-     * Set the latitude of the PMV
+     * Set the latitude of the PMV.
      * @param latitude
      */
     public void setLatitude(float latitude) {
@@ -121,7 +129,7 @@ public class PMV {
     }
 
     /**
-     * Set the Itineraries displayed by the PMV
+     * Set the Itineraries displayed by the PMV.
      * @param itineraries 
      */
     public void setItineraries(List<Itinerary> itineraries) {
@@ -129,7 +137,10 @@ public class PMV {
     }
     
     
-
+    /**
+     * Return a String representation of a PMV
+     * @return a String
+     */
     @Override
     public String toString(){        
         String res = "Numéro : " + this.id;

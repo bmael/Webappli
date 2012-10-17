@@ -86,6 +86,10 @@ public class ItineraryStats implements Comparable<ItineraryStats>{
         return modifiedDate;
     }
     
+    /**
+     * Return the String representation of an ItineraryStats.
+     * @return the String representation of an ItineraryStats
+     */
     @Override
     public String toString(){
         
@@ -100,6 +104,11 @@ public class ItineraryStats implements Comparable<ItineraryStats>{
         return res;
     }
     
+    /**
+     * Method to compare two ItineraryStats.
+     * @param o the other ItinerayStats
+     * @return 1 if this is greater than o, 0 if both are equals and -1 if this is lesser than o
+     */
     @Override
     public int compareTo(ItineraryStats o) {
         SimpleDateFormat simpledate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
