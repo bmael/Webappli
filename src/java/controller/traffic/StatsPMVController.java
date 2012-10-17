@@ -21,7 +21,7 @@ import org.jdom2.JDOMException;
 import utilities.dataBaseTools.ParserXML;
 
 /**
- *
+ * Class to conrol statistics information about itineraries in the application database.
  * @author Niiner, mael
  */
 public class StatsPMVController {

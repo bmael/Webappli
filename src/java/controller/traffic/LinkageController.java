@@ -14,7 +14,7 @@ import model.traffic.Itinerary;
 import model.traffic.PMV;
 
 /**
- *
+ * This class provides methods to link PMVs ids from API getTempsParcours and csv file.
  * @author mael
  */
 public class LinkageController {

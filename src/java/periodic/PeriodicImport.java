@@ -23,7 +23,7 @@ import javax.ejb.TimerService;
 import org.jdom2.JDOMException;
 
 /**
- *
+ * This class Provides method automatically called for importation of datas in application database. 
  * @author mael
  */
 @Singleton
@@ -38,6 +38,9 @@ public class PeriodicImport {
     DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM);
 
 
+  /**
+   * Imports all Nantes PMVs on the application database once by day.
+   */
    @Schedule(second="*", minute="*", hour="*/23", persistent = false)
    public void importEveryDay(){
        PMVController pmvContr = new PMVController();
@@ -55,9 +58,11 @@ public class PeriodicImport {
       "Execution import PMV " + mediumDateFormat.format(new Date()));
    }
   
-
+/**
+ * Add Statistics datas about itineraries in the application database every 5 minutes
+ */
  @Schedule(second="*",minute="*/5", hour="*", persistent = false)
-   public void importStatsEvery10Min(){
+   public void importStatsEvery5Min(){
        StatsPMVController pmvContr = new StatsPMVController();
 
         try {
