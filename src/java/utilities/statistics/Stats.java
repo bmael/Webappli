@@ -10,7 +10,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,14 +20,9 @@ import model.traffic.ItineraryStats;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.time.Day;
-import org.jfree.data.time.Hour;
 import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
 
 
 
@@ -33,7 +30,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 
 /**
- *
+ * Static class provides methods to compute statistic graph with JFreeChart
  * @author mael
  */
 public class Stats {
@@ -59,10 +56,10 @@ public class Stats {
 
         
         for(ItineraryStats it : itsSet){
-            SimpleDateFormat simpledate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            SimpleDateFormat simpledate = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
             Date h = simpledate.parse(it.getDate() + " " + it.getHour());
             System.out.println(h.toString());
-            series.add(new Millisecond(h),it.getTime());
+            series.add(new Millisecond(h,TimeZone.getDefault(),Locale.FRANCE),it.getTime());
         }
         
         TimeSeriesCollection data = new TimeSeriesCollection();
@@ -90,7 +87,7 @@ public class Stats {
     public static void main(String args[]){
         try {
             try {
-                Stats.ItineraryStatsXYSeries(11,"2012-10-15","2012-10-17");
+                Stats.ItineraryStatsXYSeries(121,"2012-10-17","2012-10-17");
             } catch (ParseException ex) {
                 Logger.getLogger(Stats.class.getName()).log(Level.SEVERE, null, ex);
             }

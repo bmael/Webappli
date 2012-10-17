@@ -12,14 +12,18 @@ root {
 
 body{
     width:1000px;
-    background-image:url("../images/fond.jpg");
+    background:url("../images/fond.jpg") repeat-x scroll left top #E2E2E3;
     margin:auto;
 }
 
 h2{
     font-size:20px;
     text-align:center;
-    padding-top:10px;
+}
+
+a{
+    text-decoration: none;
+    color:#999999;
 }
 
 #top_banner{
@@ -92,7 +96,15 @@ h2{
 #top_box{
     width:320px;
     height:20px;
+    padding-top:1px;
     background :url("../images/top-box.png") repeat scroll 0 0 transparent;
+}
+
+#top_info_stat_box{
+    width:320px;
+    height:45px;
+    padding-top:1px;
+    background :url("../images/top-info-stat-box.png") repeat scroll 0 0 transparent;
 }
 
 #bottom_box{
@@ -108,7 +120,7 @@ h2{
 }
 
 #info{
-    width : 300px;
+    width : 269px;
     background:url("../images/box-repeat.png") repeat scroll 0 0 transparent;
     padding : 25px;
 }

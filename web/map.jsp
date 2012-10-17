@@ -10,6 +10,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="style/global.css">
+        
+        <!-- Add JQuery -->
+        <script type="text/javascript" src="js/jquery/jquery-1.8.2.js"></script>
+        
+        <!-- Add FancyBox -->
+        <script type="text/javascript" src="js/jquery/fancyapps-fancyBox-902ef92/source/jquery.fancybox.js"></script>
+        
+        <link type="text/css" rel="stylesheet" href="js/jquery/fancyapps-fancyBox-902ef92/source/jquery.fancybox.css"/>
+        
         <title>Stat' My Way</title>
     </head>
     <body>
@@ -53,10 +62,15 @@
                     </form>
                 </div>
                 <div id="bottom_box"></div>
-
+                
                 <!-- The information div (where we will display pmv content) -->
-                <div id="top_box">
-                    <h2>Informations&nbsp;Statistiques</h2>
+                <div id="top_info_stat_box">
+                    <h2>Informations&nbsp;&nbsp;<a class="various" rel="group" href="stat.jsp">Statistiques</a></h2>
+                    <script type="text/javascript">
+                           $(document).ready(function() {
+                               $(".various").fancybox();
+                            });
+                    </script>
                 </div>
                 <div id="info">
                     <p>
