@@ -5,7 +5,7 @@
 package utilities.fileTools;
 
 /**
- *
+ * This class provides methods to download distant files.
  * @author mael
  */
 import java.io.FileOutputStream;

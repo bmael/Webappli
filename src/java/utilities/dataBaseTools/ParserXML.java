@@ -95,9 +95,6 @@ public class ParserXML {
         return datas;
 }
 
-
-
-
     /**
      * Test for the parser
      * @param args

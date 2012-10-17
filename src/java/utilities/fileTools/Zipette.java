@@ -5,7 +5,7 @@
 package utilities.fileTools;
 
 /**
- *
+ * This class provides methods to extract fie from a zip folder.
  * @author mael
  */
 //Importation des packages dont on va se servir
