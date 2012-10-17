@@ -11,6 +11,7 @@ TODO
 
 * See how to place markers according to the distance for the PMV. (Thanatos21 & Niiner)
 * Retrieve the displayed time for itineraries displayed by a PMV. (Thanatos21)
+* Method into StatsPMVController to retrieves all itineraries between 2 dates with a given id. (bmael)
 
 
 INFO
@@ -19,6 +20,7 @@ INFO
 * CSV library for JAVA : http://opencsv.sourceforge.net/#where-can-I-get-it
 * jdom-2.0.3 to download and add to libraries' project : http://www.jdom.org/downloads/index.html
 * Authentification key for our application on open data nantes : 4XTL4M0FTTASDFQ
+* fixed schedule bug with glassfish : set server.ejb-container.property.disable-nonportable-jndi-names="true" on ./asadmin
 
 
 DONE
@@ -37,5 +39,6 @@ DONE
 * Link ids in database.(bmael)
 * XMLParser realized. (Niiner)
 * Create table for statistic into our database. (niiner)
+* Fixe a bug for Schedules in periodic import. (bmael)
 
 
