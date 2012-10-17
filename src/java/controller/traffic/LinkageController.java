@@ -19,6 +19,11 @@ import model.traffic.PMV;
  */
 public class LinkageController {
     
+    /**
+     * Links the PMV id's from API getTempsParcours and csv file and stores 
+     * this link in LinkagePMV.
+     * @throws SQLException 
+     */
     public void importLinkage() throws SQLException{
         Statement s = DataBaseManager.getInstance().getCon().createStatement();
             
@@ -46,12 +51,20 @@ public class LinkageController {
         }
     }
     
+    /**
+     * Remove all the entries in LinkagePMV.
+     * @throws SQLException 
+     */
     public void removeAll() throws SQLException{
         Statement s = DataBaseManager.getInstance().getCon().createStatement();
         String sqlquery = "DELETE FROM LinkagePMV;";
         s.executeUpdate(sqlquery);
     }
       
+    /**
+     * Test this class.
+     * @param args 
+     */
     public static void main(String args[]){
         LinkageController linkageContr = new LinkageController();
         try {

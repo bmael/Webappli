@@ -33,7 +33,8 @@ public class StatsPMVController {
      * @throws JDOMException
      * @throws SQLException
      */
-    public void importAPI() throws FileNotFoundException, IOException, SQLException, MalformedURLException, JDOMException {
+    public void importAPI() throws FileNotFoundException, IOException, SQLException,
+            MalformedURLException, JDOMException {
 
             List<String[]> data = ParserXML.extractDataFromAPI(
                     "http://data.nantes.fr/api/getTempsParcours/1.0/4XTL4M0FTTASDFQ");
@@ -44,8 +45,7 @@ public class StatsPMVController {
                 String time = oneData[1];
                 String date = oneData[2].substring(0,10);
                 String hour = oneData[2].substring(11,(oneData[2].length()));
-               
-              
+                           
                 ItineraryStats it = new ItineraryStats(Integer.parseInt(id), Integer.parseInt(time), date, hour);
                 it.setDate(it.reverseDate(date));
                 
@@ -133,7 +133,18 @@ public class StatsPMVController {
         
     }
     
-    public static void main(String args[]) throws FileNotFoundException, MalformedURLException, MalformedURLException, JDOMException, JDOMException, IOException{
+    /**
+     * Test this class.
+     * @param args
+     * @throws FileNotFoundException
+     * @throws MalformedURLException
+     * @throws MalformedURLException
+     * @throws JDOMException
+     * @throws JDOMException
+     * @throws IOException 
+     */
+    public static void main(String args[]) throws FileNotFoundException, MalformedURLException,
+            MalformedURLException, JDOMException, JDOMException, IOException{
         
         StatsPMVController pmvContr = new StatsPMVController();
 

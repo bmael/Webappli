@@ -31,11 +31,7 @@ public class PMVController {
      */
     public void importPMV() throws FileNotFoundException, IOException, SQLException {
 
-//            List<String[]> data = ParserCSV.extractDataFromZip(
-//                            "http://data.nantes.fr/fileadmin/data/datastore/"+
-//                            "3-publication/mobilite/localisation_pmv/"+
-//                            "localisation_pmv_csv.zip");
-                   List<String[]> data = ParserCSV.extractData(System.getProperty("user.dir")+"/localisation_pmv.csv");
+            List<String[]> data = ParserCSV.extractData(System.getProperty("user.dir")+"/localisation_pmv.csv");
 
 
             for (String[] oneData : data) {
@@ -73,6 +69,11 @@ public class PMVController {
             s.executeUpdate(sqlquery);
     }
 
+    /**
+     * Return all the PMVs from Pmv table.
+     * @return a List of PMVs
+     * @throws SQLException 
+     */
     public List<PMV> getAll() throws SQLException{
         List<PMV> pmvs = new ArrayList();
 
@@ -90,12 +91,20 @@ public class PMVController {
         return pmvs;
     }
 
+    /**
+     * Remove all the PMVs in Pmv table.
+     * @throws SQLException 
+     */
     public void removeAll() throws SQLException{
         Statement s = DataBaseManager.getInstance().getCon().createStatement();
         String sqlquery = "DELETE FROM Pmv;";
         s.executeUpdate(sqlquery);
     }
     
+    /**
+     * Test this class
+     * @param args 
+     */
     public static void main(String args[]){
 
         System.out.print(System.getProperty("user.dir" ));

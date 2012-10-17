@@ -64,6 +64,11 @@ public class ItineraryController {
             s.executeUpdate(sqlquery);
     }
 
+    /**
+     * Return all itineraries from Itinerary table.
+     * @return a List of Itineraries
+     * @throws SQLException 
+     */
     public List<Itinerary> getAll() throws SQLException{
         List<Itinerary> its = new ArrayList();
 
@@ -79,13 +84,21 @@ public class ItineraryController {
 
         return its;
     }
-
+ 
+   /**
+    * Remove all the Itineraies from Itinerary table.
+    * @throws SQLException 
+    */ 
     public void removeAll() throws SQLException{
         Statement s = DataBaseManager.getInstance().getCon().createStatement();
         String sqlquery = "DELETE FROM Itinerary;";
         s.executeUpdate(sqlquery);
     }
     
+    /**
+     * Test this class
+     * @param args 
+     */
     public static void main(String args[]){
 
         System.out.print(System.getProperty("user.dir" ));
