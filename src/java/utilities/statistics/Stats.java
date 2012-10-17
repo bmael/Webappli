@@ -83,7 +83,10 @@ public class Stats {
         
     }
     
-    
+    /**
+     * Test this class.
+     * @param args 
+     */
     public static void main(String args[]){
         try {
             try {
