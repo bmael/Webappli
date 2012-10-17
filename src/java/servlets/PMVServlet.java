@@ -4,13 +4,17 @@
  */
 package servlets;
 
+import controller.database.DataBaseManager;
+import controller.traffic.ItineraryController;
 import controller.traffic.PMVController;
 import controller.traffic.StatsPMVController;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +24,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.traffic.Itinerary;
 import model.traffic.ItineraryStats;
 import model.traffic.PMV;
 
@@ -32,6 +37,9 @@ public class PMVServlet extends HttpServlet {
 
     @Inject
     private PMVController pmvContr;
+    
+    @Inject
+    private ItineraryController itineraryContr;
     
     @Inject
     private StatsPMVController statsPmvContr;
@@ -51,7 +59,6 @@ public class PMVServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-                    
             
             /* TODO output your page here. You may use following sample code. */
             out.println("<html>");
@@ -62,24 +69,40 @@ public class PMVServlet extends HttpServlet {
             out.println("<h1>Servlet PMVServlet at " + request.getContextPath() + "</h1>");
             
             try {
-                List<PMV> pmvs = pmvContr.getAll();
                 String codeJs = new String();
                 
-                List<ItineraryStats> datas = statsPmvContr.getAll();
+                // Query to get all the informations needed for the markers
+                // Note that the clause WHERE is not necessary
+                Statement s = DataBaseManager.getInstance().getCon().createStatement();
+                String sqlquery = "SELECT p.indic_temps_parcours, i.numero, i.origine, i.destination, s.time, p.latitude, p.longitude "
+                                + "FROM Pmv p "
+                                + "JOIN LinkagePMV l ON ( p.numero = l.idPMV ) "
+                                + "JOIN Itinerary i ON ( l.idAPI = i.numero ) "
+                                + "JOIN StatsPMV s ON ( i.id = s.id ) "
+                                + "WHERE p.indic_temps_parcours = 1;";
+                ResultSet res = s.executeQuery(sqlquery);
                 
-                int i = 0;
-                for (PMV pmv:pmvs) {
-                    if ( pmv.isIndic_temps() && datas.size()!=0 ) {
-                        codeJs += "my_marker = new mxn.Marker(new mxn.LatLonPoint(" + pmv.getLatitude() + "," + pmv.getLongitude() + "));";
-                        codeJs += "my_marker.setIcon('images/marker.png');";
-                        codeJs += "my_marker.setInfoDiv('" +datas.get(i).getTime() + " minutes</p>','info');";
-                        codeJs += "mapstraction.addMarker(my_marker);";
-                        
-                        i++;
-                    }
+                // Generating javascript code using the mapstraction API
+                int id;
+                while ( res.next() ) {
+                    id = res.getInt("i.numero");
+                    codeJs += "my_marker = new mxn.Marker(new mxn.LatLonPoint(" + res.getDouble("p.latitude") + "," + res.getDouble("p.longitude") + "));";
+                    codeJs += "my_marker.setIcon('images/marker.png');";
+                    codeJs += "my_marker.setInfoDiv('<h2>" + res.getString("i.origine") + "</h2>";
+                    
+                    // Display every PMV destinations
+                    do {
+                         codeJs += "<b>" + res.getString("i.destination") + "</b> --> " + res.getString("s.time") + " minutes</br>";
+                    } while ( res.next() && res.getInt("i.numero") == id );
+                    codeJs += "','info');";
+                    codeJs += "mapstraction.addMarker(my_marker);";
+                    
+                    res.previous();
                 }
+                
                 request.setAttribute("codeJs", codeJs);
                 request.getServletContext().getRequestDispatcher("/map.jsp").forward(request, response);
+                
             }       catch (FileNotFoundException ex) {
                         Logger.getLogger(PMVServlet.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (MalformedURLException ex) {
