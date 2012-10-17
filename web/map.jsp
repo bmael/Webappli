@@ -43,9 +43,10 @@
             
             <div id="right_col">
                 <!-- The filter menu -->
-                <div id="top_box"></div>
-                <div id="filter">
+                <div id="top_box">
                     <h2>Filtres</h2>
+                </div>
+                <div id="filter">
                     <form action="" method="POST">
                         <input type="checkbox" name="PMV" value="PMV"/> PMV <br/>
                         <input type="checkbox" name="Parking" value="Parking"/> Parking
@@ -54,17 +55,12 @@
                 <div id="bottom_box"></div>
 
                 <!-- The information div (where we will display pmv content) -->
-                <div id="top_box"></div>
+                <div id="top_box">
+                    <h2>Informations&nbsp;Statistiques</h2>
+                </div>
                 <div id="info">
-                    <h2>Informations</h2>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aliquam scelerisque, metus at pretium iaculis, odio odio 
-                        cursus diam, id mollis ligula mi et elit. Vivamus iaculis 
-                        molestie turpis sed scelerisque. Donec ligula lectus, luctus
-                        et laoreet nec, vestibulum ac enim. Maecenas luctus faucibus
-                        ipsum, ac fermentum augue bibendum sed. In iaculis, nulla et
-                        luctus iaculis, felis mi convallis erat, sit. 
+                        Aucun PMV séléctionné 
                     </p>
                 </div>
                 <div id="bottom_box"></div>

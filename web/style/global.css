@@ -16,6 +16,12 @@ body{
     margin:auto;
 }
 
+h2{
+    font-size:20px;
+    text-align:center;
+    padding-top:10px;
+}
+
 #top_banner{
     width:991px;
     height:20px;
@@ -104,7 +110,7 @@ body{
 #info{
     width : 300px;
     background:url("../images/box-repeat.png") repeat scroll 0 0 transparent;
-    padding : 10px;
+    padding : 25px;
 }
 
 .clear{
