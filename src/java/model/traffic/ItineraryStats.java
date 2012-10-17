@@ -4,11 +4,17 @@
  */
 package model.traffic;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * This class contains information for Itinerary Statistics
  * @author Niiner
  */
-public class ItineraryStats {
+public class ItineraryStats implements Comparable<ItineraryStats>{
     private int id;
     private int time;
     private String dateD;
@@ -94,6 +100,23 @@ public class ItineraryStats {
         return res;
     }
     
+    @Override
+    public int compareTo(ItineraryStats o) {
+        SimpleDateFormat simpledate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        try {
+            Date d1 = simpledate.parse(dateD + " " + hourH);
+            Date d2 = simpledate.parse(o.dateD + " " + o.hourH);
+            return d1.compareTo(d2);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(ItineraryStats.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+        
+    }
+
+    
+  
     
 }
 

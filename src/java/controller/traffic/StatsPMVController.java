@@ -133,13 +133,14 @@ public class StatsPMVController {
         
     }
     
-    public static void main(String args[]) throws FileNotFoundException, MalformedURLException, MalformedURLException, JDOMException, JDOMException{
+    public static void main(String args[]) throws FileNotFoundException, MalformedURLException, MalformedURLException, JDOMException, JDOMException, IOException{
         
         StatsPMVController pmvContr = new StatsPMVController();
 
         try {
+//            pmvContr.importAPI();
             System.out.println(pmvContr.getAll().size());
-            for(ItineraryStats it : pmvContr.getItinerariesStats(11, "2012-10-15", "2012-10-15")) {
+            for(ItineraryStats it : pmvContr.getItinerariesStats(11, "2012-10-17", "2012-10-17")) {
                 System.out.println(it.toString());
             }
             
