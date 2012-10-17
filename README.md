@@ -10,7 +10,6 @@ TODO
 ----
 
 * See how to place markers according to the distance for the PMV. (Thanatos21 & Niiner)
-* Retrieve the displayed time for itineraries displayed by a PMV. (Thanatos21)
 * JUnit test.
 
 
@@ -43,5 +42,6 @@ DONE
 * Fixe a bug for Schedules in periodic import. (bmael)
 * Method into StatsPMVController to retrieves all itineraries between 2 dates with a given id. (bmael)
 * Creating all classes for JUnit test. (bmael)
+* Retrieve the displayed times for itineraries displayed by a PMV. (Thanatos21)
 
 
