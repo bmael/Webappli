@@ -84,13 +84,59 @@ public class Stats {
     }
     
     /**
+     * Construct a polar graph. In X we have time (hour), in Y we have time (minutes) 
+     * to go at the destination of the itinerary.
+     * @param int id, the id of itineray
+     * @param String d1, the start date for the graph
+     * @param String d2, the end daye for the graph
+     */
+    public static void ItineraryStatsPolar(int id, String d1, String d2) throws SQLException, ParseException{
+        
+        StatsPMVController statsContr = new StatsPMVController();     
+        List<ItineraryStats> its = statsContr.getItinerariesStats(id, d1, d2);
+        
+        //Remove doublons for statistics
+        Set<ItineraryStats> itsSet = new TreeSet();
+        itsSet.addAll(its);
+        
+        TimeSeries series = new TimeSeries("Itinerary stats");
+
+        
+        for(ItineraryStats it : itsSet){
+            SimpleDateFormat simpledate = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+            Date h = simpledate.parse(it.getDate() + " " + it.getHour());
+            System.out.println(h.toString());
+            series.add(new Millisecond(h,TimeZone.getDefault(),Locale.FRANCE),it.getTime());
+        }
+        
+        TimeSeriesCollection data = new TimeSeriesCollection();
+        data.addSeries(series);
+        
+         JFreeChart chart = ChartFactory.createPolarChart(
+            "Itinéraire " + id + " (" + d1 + ")",
+            data,
+            true,
+            true,
+            false
+        );
+
+            //create and display a frame...
+            ChartFrame frame=new ChartFrame("First",chart);
+            frame.pack();
+            frame.setVisible(true);
+        
+        
+    }
+    
+    /**
      * Test this class.
      * @param args 
      */
     public static void main(String args[]){
         try {
             try {
-                Stats.ItineraryStatsXYSeries(11,"2012-10-17","2012-10-17");
+                Stats.ItineraryStatsXYSeries(12,"2012-10-17","2012-10-17");
+                Stats.ItineraryStatsPolar(12,"2012-10-17","2012-10-17");
             } catch (ParseException ex) {
                 Logger.getLogger(Stats.class.getName()).log(Level.SEVERE, null, ex);
             }

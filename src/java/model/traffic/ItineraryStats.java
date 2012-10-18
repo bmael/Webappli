@@ -115,7 +115,16 @@ public class ItineraryStats implements Comparable<ItineraryStats>{
         try {
             Date d1 = simpledate.parse(dateD + " " + hourH);
             Date d2 = simpledate.parse(o.dateD + " " + o.hourH);
-            return d1.compareTo(d2);
+            
+            if(id == o.id) {
+                return d1.compareTo(d2);
+            }else{
+                if(id>o.id){
+                    return 1;
+                }else{
+                    return -1;
+                }
+            }
 
         } catch (ParseException ex) {
             Logger.getLogger(ItineraryStats.class.getName()).log(Level.SEVERE, null, ex);

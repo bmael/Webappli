@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.traffic.ItineraryStats;
@@ -51,6 +52,21 @@ public class StatsPMVController {
                 
                 this.add(it);               
           }
+    }
+    
+      /**
+     * Import all the Itinarery information (for stats) from the open data of nantes on the database
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws MalformedURLException
+     * @throws JDOMException
+     * @throws SQLException
+     */
+    public void importSet(Set<ItineraryStats> setIts) throws SQLException{
+        for(ItineraryStats it : setIts){
+            add(it);
+        }
+            
     }
 
     /**

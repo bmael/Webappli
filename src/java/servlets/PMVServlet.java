@@ -84,21 +84,21 @@ public class PMVServlet extends HttpServlet {
                 
                 // Generating javascript code using the mapstraction API
                 int id;
-                while ( res.next() ) {
-                    id = res.getInt("i.numero");
-                    codeJs += "my_marker = new mxn.Marker(new mxn.LatLonPoint(" + res.getDouble("p.latitude") + "," + res.getDouble("p.longitude") + "));";
-                    codeJs += "my_marker.setIcon('images/marker.png');";
-                    codeJs += "my_marker.setInfoDiv('<h2>" + res.getString("i.origine") + "</h2>";
-                    
-                    // Display every PMV destinations
-                    do {
-                         codeJs += "<b>" + res.getString("i.destination") + "</b> --> " + res.getString("s.time") + " minutes</br>";
-                    } while ( res.next() && res.getInt("i.numero") == id );
-                    codeJs += "','info');";
-                    codeJs += "mapstraction.addMarker(my_marker);";
-                    
-                    res.previous();
-                }
+//                while ( res.next() ) {
+//                    id = res.getInt("i.numero");
+//                    codeJs += "my_marker = new mxn.Marker(new mxn.LatLonPoint(" + res.getDouble("p.latitude") + "," + res.getDouble("p.longitude") + "));";
+//                    codeJs += "my_marker.setIcon('images/marker.png');";
+//                    codeJs += "my_marker.setInfoDiv('<h2>" + res.getString("i.origine") + "</h2>";
+//                    
+//                    // Display every PMV destinations
+//                    do {
+//                         codeJs += "<b>" + res.getString("i.destination") + "</b> --> " + res.getString("s.time") + " minutes</br>";
+//                    } while ( res.next() && res.getInt("i.numero") == id );
+//                    codeJs += "','info');";
+//                    codeJs += "mapstraction.addMarker(my_marker);";
+//                    
+//                    res.previous();
+//                }
                 
                 request.setAttribute("codeJs", codeJs);
                 request.getServletContext().getRequestDispatcher("/map.jsp").forward(request, response);
