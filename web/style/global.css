@@ -128,3 +128,18 @@ a{
 .clear{
     clear:both;
 }
+
+#footer{
+    text-align: center;
+    font-style: italic;
+}
+
+#logo{
+    background-image: url("../images/kissfairy.png");
+    width:32px;
+    height:32px;
+    margin:auto;
+}
+.logofont{
+    font-family: monospace;
+}
