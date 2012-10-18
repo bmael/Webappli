@@ -135,8 +135,8 @@ public class Stats {
     public static void main(String args[]){
         try {
             try {
-                Stats.ItineraryStatsXYSeries(12,"2012-10-17","2012-10-17");
-                Stats.ItineraryStatsPolar(12,"2012-10-17","2012-10-17");
+                Stats.ItineraryStatsXYSeries(11,"2012-10-17","2012-10-17");
+                Stats.ItineraryStatsPolar(11,"2012-10-17","2012-10-17");
             } catch (ParseException ex) {
                 Logger.getLogger(Stats.class.getName()).log(Level.SEVERE, null, ex);
             }
