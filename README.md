@@ -21,6 +21,8 @@ INFO
 * jdom-2.0.3 to download and add to libraries' project : http://www.jdom.org/downloads/index.html
 * Authentification key for our application on open data nantes : 4XTL4M0FTTASDFQ
 * fixed schedule bug with glassfish : set server.ejb-container.property.disable-nonportable-jndi-names="true" on ./asadmin
+* Dump SQL Table : shell> mysqldump --user=****** --password=****** -A > /Chemin/Vers/fichier_dump.SQL
+* restore ot : shell> mysql --user=****** --password=****** db_nom < /Chemin/Vers/fichier_dump.SQL
 
 
 DONE
