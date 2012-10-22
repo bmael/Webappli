@@ -41,8 +41,8 @@ public class PeriodicImport {
   /**
    * Imports all Nantes PMVs on the application database once by day.
    */
-   @Schedule(second="*", minute="*", hour="*/23", persistent = false)
-   public void importEveryDay(){
+   @Schedule(second="0", minute="0", hour="*/23", persistent = false)
+   public synchronized void importEveryDay(){
        PMVController pmvContr = new PMVController();
         try {
             pmvContr.removeAll();
@@ -61,8 +61,8 @@ public class PeriodicImport {
 /**
  * Add Statistics datas about itineraries in the application database every 5 minutes
  */
- @Schedule(second="*",minute="*/5", hour="*", persistent = false)
-   public void importStatsEvery5Min(){
+ @Schedule(second="0",minute="*/5", hour="*", persistent = false)
+   public synchronized void importStatsEvery5Min(){
        StatsPMVController pmvContr = new StatsPMVController();
 
         try {
