@@ -7,6 +7,8 @@ package utilities.statistics;
 import controller.traffic.StatsPMVController;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,6 +23,7 @@ import java.util.logging.Logger;
 import model.traffic.ItineraryStats;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
@@ -52,6 +55,7 @@ public class Stats {
         StatsPMVController statsContr = new StatsPMVController();     
         List<ItineraryStats> its = statsContr.getItinerariesStats(id, d1, d2);
         
+        
         //Remove doublons for statistics
         Set<ItineraryStats> itsSet = new TreeSet();
         itsSet.addAll(its);
@@ -74,6 +78,17 @@ public class Stats {
     }
     
     /**
+     * Export the chart to a png.
+     * @param title - the name of the png file
+     * @param chart - the chart to display
+     * @throws IOException
+     */
+    private static void saveAsPNG(String title,JFreeChart chart) throws IOException{
+        ChartUtilities.saveChartAsPNG(new File("web/images/stats/charts/"+title+".png"),
+                chart, 570, 400);
+    }
+    
+    /**
      * Show the chart in a frame.
      * @param chart - the chart to display
      */
@@ -92,8 +107,9 @@ public class Stats {
      * @param String d2 - the end daye for the graph
      * @throws ParseException
      * @throws SQLException
+     * @throws IOException
      */
-    public static void ItineraryStatsXYSeries(int id, String d1, String d2) throws SQLException, ParseException{
+    public static void ItineraryStatsXYSeries(int id, String d1, String d2) throws SQLException, ParseException, IOException{
         
          XYDataset data = createDataset(id, d1, d2);
          JFreeChart chart = ChartFactory.createTimeSeriesChart(
@@ -105,7 +121,7 @@ public class Stats {
             true,
             false
         );
-         
+                  
          Ellipse2D.Double t = new Ellipse2D.Double(-2.5, -2.5, 5, 5);
          
          XYPlot plot = (XYPlot) chart.getPlot();
@@ -113,6 +129,7 @@ public class Stats {
          render.setSeriesShapesVisible(0, true);
          render.setSeriesShape(0, t);
          
+        saveAsPNG(id+"_"+d1+"_"+d2,chart);
         show(chart);
     }
     
@@ -143,7 +160,11 @@ public class Stats {
     public static void main(String args[]){
         try {
             try {
-                Stats.ItineraryStatsXYSeries(11,"2012-10-22","2012-10-22");
+                try {
+                    Stats.ItineraryStatsXYSeries(11,"2012-10-22","2012-10-22");
+                } catch (IOException ex) {
+                    Logger.getLogger(Stats.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 Stats.ItineraryStatsPolar(11,"2012-10-22","2012-10-22");
             } catch (ParseException ex) {
                 Logger.getLogger(Stats.class.getName()).log(Level.SEVERE, null, ex);

@@ -4,9 +4,6 @@
  */
 package controller.database;
 
-import com.sun.tools.xjc.Driver;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import static org.junit.Assert.*;
 import org.junit.Test;

@@ -26,6 +26,14 @@ public class DataBaseManager {
     
     private static DataBaseManager instance; 
     private Connection con = null;
+
+    /**
+     * Set the Connection
+     * @param con 
+     */
+    private void setCon(Connection con) {
+        this.con = con;
+    }
     
     /**
      * Initialize the connection to the database and constructs all the tables 
@@ -34,7 +42,7 @@ public class DataBaseManager {
     private DataBaseManager(){
          try {
             Class.forName("com.mysql.jdbc.Driver");  //loads the driver
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/WebappliDb", "root", "root");
+            setCon(DriverManager.getConnection("jdbc:mysql://localhost:3306/WebappliDb", "root", "root"));
             
             //creates tables for the database
             createTablePMV();

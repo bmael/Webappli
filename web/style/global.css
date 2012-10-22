@@ -10,9 +10,12 @@ root {
     display: block;
 }
 
-body{
+body {
+        background:url("../images/fond.jpg") repeat-x scroll left top #E2E2E3;
+}
+
+#body{
     width:1000px;
-    background:url("../images/fond.jpg") repeat-x scroll left top #E2E2E3;
     margin:auto;
 }
 

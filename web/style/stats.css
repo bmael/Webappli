@@ -1,0 +1,59 @@
+/* 
+    Document   : stats
+    Created on : 22 oct. 2012, 10:23:02
+    Author     : mael
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#body{
+    width : 900px;
+    height : 600px;
+}
+
+#stat_top{
+    width : 900px;
+    height : 50px;
+}
+
+#left_arrow{
+    float:left; 
+    width:50px;
+    height:50px;
+    background:url("../images/stats/leftArrow.png") repeat-x scroll left top;
+}
+
+#date{
+    float:left;   
+    width : 800px;
+    height : 50px;
+    text-align:center;
+    padding-top:20px;
+}
+
+#right_arrow{
+    float:left; 
+    width:50px;
+    height:50px;
+    background:url("../images/stats/rightArrow.png") repeat-x scroll left top;
+}
+
+#left_col{
+    width: 580px;
+}
+
+#top_stat{
+    width:580px;
+    height:20px;
+    background :url("../images/stats/top-stat.png") repeat scroll 0 0 transparent;
+}
+
+#statistique{
+    width:580px;
+    height: 600px;
+    background :url("../images/map-repeat.png") repeat scroll 0 0 transparent;
+}
