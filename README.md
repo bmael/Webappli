@@ -10,7 +10,7 @@ TODO
 ----
 
 * See how to place markers according to the distance for the PMV. (Thanatos21 & Niiner)
-* JUnit test.
+* JUnit test. => May be we have to do a mock for dbmanager to test our application...
 
 
 
