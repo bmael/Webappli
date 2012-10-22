@@ -5,6 +5,8 @@
 package utilities.statistics;
 
 import controller.traffic.StatsPMVController;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,6 +22,8 @@ import model.traffic.ItineraryStats;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
@@ -101,6 +105,14 @@ public class Stats {
             true,
             false
         );
+         
+         Ellipse2D.Double t = new Ellipse2D.Double(-2.5, -2.5, 5, 5);
+         
+         XYPlot plot = (XYPlot) chart.getPlot();
+         XYLineAndShapeRenderer render = (XYLineAndShapeRenderer) plot.getRenderer();
+         render.setSeriesShapesVisible(0, true);
+         render.setSeriesShape(0, t);
+         
         show(chart);
     }
     
