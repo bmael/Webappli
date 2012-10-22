@@ -44,6 +44,8 @@ DONE
 * Fixe a bug for Schedules in periodic import. (bmael)
 * Method into StatsPMVController to retrieves all itineraries between 2 dates with a given id. (bmael)
 * Creating all classes for JUnit test. (bmael)
-* Retrieve the displayed times for itineraries displayed by a PMV. (Thanatos21)
+* Retrieve the displayed times for itineraries displayed by a PMV. (Thanatos21).
+* Larger point in the XYLineChart. (bmael)
+* Problem with schedules fixed. (bmael)
 
 
