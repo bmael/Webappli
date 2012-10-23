@@ -19,6 +19,7 @@ import utilities.fileTools.Zipette;
  * @author mael
  */
 public class ParserCSV {
+    /* TODO REVOIR LE PARSER CSV */
     
     /**
      * Extract data from the zip file at the url given in parameter
@@ -33,9 +34,11 @@ public class ParserCSV {
         //Retrieve the name of the zip file and of the csv file
         String archiveName = url.substring(url.lastIndexOf("/")+1);
         
-        String[] csvTmpName = archiveName.split("_");
-        String csvName = csvTmpName[0] + "_" + csvTmpName[1] + ".csv";
-                
+        //Suppression of : "_csv.zip"
+        String csvName = archiveName.substring(0,(archiveName.length()-8));   
+        csvName = csvName + ".csv";
+        
+        System.out.println(csvName);
         Zipette.extractTo(archiveName, csvName, System.getProperty("user.dir" )+"/");
             
         return extractData(csvName);
@@ -80,8 +83,9 @@ public class ParserCSV {
      */
     public static void main(String args[]) throws 
         FileNotFoundException, MalformedURLException, IOException{
-//        ParserCSV.extractDataFromZip("http://data.nantes.fr/fileadmin/data/datastore/3-publication/mobilite/localisation_pmv/localisation_pmv_csv.zip");
-        ParserCSV.extractData(System.getProperty("user.dir")+"/localisation_pmv.csv");
+        ParserCSV.extractDataFromZip("http://data.nantes.fr/fileadmin/data/datastore/3-publication/mobilite/localisation_pmv/localisation_pmv_csv.zip");
+        ParserCSV.extractDataFromZip("http://data.nantes.fr/fileadmin/data/datastore/3-publication/mobilite/horaires_parkings_publics/horaires_parkings_publics_csv.zip");
+        ParserCSV.extractDataFromZip("http://data.nantes.fr/fileadmin/data/datastore/3-publication/mobilite/services_parkings_publics/services_parkings_publics_csv.zip");
     }
     
 }
