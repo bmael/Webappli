@@ -37,7 +37,7 @@ public class StatsPMVController {
     public void importAPI() throws FileNotFoundException, IOException, SQLException,
             MalformedURLException, JDOMException {
 
-            List<String[]> data = ParserXML.extractDataFromAPI(
+            List<String[]> data = ParserXML.extractDataFromAPI("itinerary.xml",
                     "http://data.nantes.fr/api/getTempsParcours/1.0/4XTL4M0FTTASDFQ");
 
             for (String[] oneData : data) {                             
@@ -165,6 +165,7 @@ public class StatsPMVController {
         StatsPMVController pmvContr = new StatsPMVController();
 
         try {
+//            pmvContr.removeAll();
 //            pmvContr.importAPI();
             System.out.println(pmvContr.getAll().size());
             for(ItineraryStats it : pmvContr.getItinerariesStats(11, "2012-10-17", "2012-10-17")) {
