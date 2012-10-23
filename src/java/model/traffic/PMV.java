@@ -4,6 +4,7 @@
  */
 package model.traffic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,19 +21,21 @@ public class PMV {
     private List<Itinerary> itineraries;
  
     /**
-     * Construc a PMV.
+     * Construct a PMV.
      * @param id the id of the PMV
      * @param sens the direction of the PMV 'S' = going out of the city or 'E' = in the direction of the city
      * @param indic_temps true if the PMV is displaying a time for an itinerary, false otherwise
      * @param longitude longitude of the PMV
      * @param latitude  latitude of the PMV
+     * @param itineraries List of the itineraries displayed by the PMV
      */
-    public PMV(int id, String sens, boolean indic_temps, float longitude, float latitude){
+    public PMV(int id, String sens, boolean indic_temps, float longitude, float latitude, List<Itinerary> itineraries) {
         this.id = id;
         this.sens = sens;
         this.indic_temps = indic_temps;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.itineraries = new ArrayList<Itinerary>(itineraries);
     }
     
     /**************************************************************************/

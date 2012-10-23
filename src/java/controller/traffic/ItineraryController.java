@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.inject.Inject;
 import model.traffic.Itinerary;
 import utilities.dataBaseTools.ParserCSV;
 
@@ -22,6 +23,9 @@ import utilities.dataBaseTools.ParserCSV;
  * @author mael
  */
 public class ItineraryController {
+    @Inject
+    private LinkageController linkageContr;
+    
     /**
      * Import all the Itineraries from the csv file created according to table 
      * found at <http://data.nantes.fr/les-donnees/documentation-de-lapi/gettempsparcours/>
@@ -81,6 +85,30 @@ public class ItineraryController {
                                     res.getString("origine"),
                                     res.getString("destination")));
             }
+
+        return its;
+    }
+    
+    /**
+     * Return all of the itineraries correspnding to the given Numero
+     * @param numero
+     * @return a List of Itineraries
+     * @throws SQLException
+     */
+    public List<Itinerary> getItinerariesByNumero(int numero) throws SQLException {
+        List<Itinerary> its = new ArrayList();
+
+        Statement s = DataBaseManager.getInstance().getCon().createStatement();
+        String sqlquery = "SELECT * FROM Itinerary "
+                        + "WHERE numero = " + numero + ";";
+        ResultSet res = s.executeQuery(sqlquery);
+        
+
+        while(res.next()){
+            its.add(new Itinerary(res.getInt("id"),res.getInt("numero"),
+                                res.getString("origine"),
+                                res.getString("destination")));
+        }
 
         return its;
     }
