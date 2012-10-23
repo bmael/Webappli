@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -135,6 +136,34 @@ public class StatsPMVController {
         
         return liRes;
         
+    }
+    
+    /**
+     * Return the last Itinerary time.
+     * @param id The id of the itinerary
+     * @return The last itinerary time. If there is no matching result in our database, this method will return 0.
+     * @throws SQLException
+     */
+    public int getLastItineraryTime(int id) throws SQLException {
+        List<ItineraryStats> liRes = new ArrayList();
+        int time = 0;
+        
+        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy/MM/dd");
+        String date = formatDate.format(new Date());
+        
+        Statement s = DataBaseManager.getInstance().getCon().createStatement();
+        String sqlquery = "SELECT * FROM StatsPMV "
+                        + "WHERE id='"
+                        + id + "' "
+                        + "AND dateD='" + date + "' "
+                        + "ORDER BY dateD DESC, hourH DESC;";
+        ResultSet res = s.executeQuery(sqlquery);
+        
+        if (res.next()){
+                time = res.getInt("time");
+        }
+        
+        return time;
     }
 
     /**

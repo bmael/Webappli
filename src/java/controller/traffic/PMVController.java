@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.inject.Inject;
 import model.traffic.PMV;
 import utilities.dataBaseTools.ParserCSV;
 
@@ -22,6 +23,11 @@ import utilities.dataBaseTools.ParserCSV;
  * @author mael
  */
 public class PMVController {
+    
+    @Inject
+    private ItineraryController itineraryContr;
+    @Inject
+    private LinkageController linkageContr;
 
     /**
      * Import all the PMV from the open data of nantes on the database
@@ -32,7 +38,9 @@ public class PMVController {
     public void importPMV() throws FileNotFoundException, IOException, SQLException {
 
             List<String[]> data = ParserCSV.extractData(System.getProperty("user.dir")+"/localisation_pmv.csv");
-
+            
+            ItineraryController itineraryContr = new ItineraryController();
+            LinkageController linkageContr = new LinkageController();
 
             for (String[] oneData : data) {
                 String id = oneData[0].replace(',', '.');
@@ -45,7 +53,8 @@ public class PMVController {
                                     sens,
                                     ("Oui".equals(indic_temps)) ? true : false,
                                     Float.parseFloat(longitude),
-                                    Float.parseFloat(latitude));
+                                    Float.parseFloat(latitude),
+                                    itineraryContr.getItinerariesByNumero(linkageContr.getPmvToItineraryId((int)Float.parseFloat(id))));
 
                 this.add(pmv);
             }
@@ -76,6 +85,10 @@ public class PMVController {
      */
     public List<PMV> getAll() throws SQLException{
         List<PMV> pmvs = new ArrayList();
+        
+        ItineraryController itineraryContr = new ItineraryController();
+        LinkageController linkageContr = new LinkageController();
+
 
         Statement s = DataBaseManager.getInstance().getCon().createStatement();
         String sqlquery = "SELECT * FROM Pmv;";
@@ -85,7 +98,8 @@ public class PMVController {
                 pmvs.add(new PMV(res.getInt("numero"),res.getString("sens"),
                                     res.getBoolean("indic_temps_parcours"),
                                     res.getFloat("longitude"),
-                                    res.getFloat("latitude")));
+                                    res.getFloat("latitude"),
+                                    itineraryContr.getItinerariesByNumero(linkageContr.getPmvToItineraryId(res.getInt("numero")))));
             }
 
         return pmvs;
