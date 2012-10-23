@@ -13,7 +13,6 @@ TODO
 * JUnit test. => May be we have to do a mock for dbmanager to test our application...
 
 
-
 INFO
 ----
 
@@ -40,12 +39,15 @@ DONE
 * Complete the PMV model to have itineraries displayed by a PMV. (bmael)
 * Link ids in database.(bmael)
 * XMLParser realized. (Niiner)
-* Create table for statistic into our database. (niiner)
+* Create table for statistic into our database. (Niiner)
 * Fixe a bug for Schedules in periodic import. (bmael)
 * Method into StatsPMVController to retrieves all itineraries between 2 dates with a given id. (bmael)
 * Creating all classes for JUnit test. (bmael)
 * Retrieve the displayed times for itineraries displayed by a PMV. (Thanatos21).
 * Larger point in the XYLineChart. (bmael)
 * Problem with schedules fixed. (bmael)
+* Create the database for application (create tables for Parking). (Niiner)
+* Create model classes for application (Parking / ParkingLocalisation/ ParkingStats). (Niiner)
+* Modification for ParserXML and CSV
 
 
