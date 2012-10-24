@@ -85,7 +85,7 @@ public class Stats {
      */
     private static void saveAsPNG(String title,JFreeChart chart) throws IOException{
         ChartUtilities.saveChartAsPNG(new File("web/images/stats/charts/"+title+".png"),
-                chart, 570, 400);
+                chart, 560, 400);
     }
     
     /**

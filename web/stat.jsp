@@ -41,7 +41,7 @@
                     
                     <div id="top_stat"></div>
                     <div id="statistique">
-                       <img src="images/stats/charts/11_2012-10-22_2012-10-22.png" alt="Statistiques"/> 
+                       <img id="chartPNG" src="images/stats/charts/11_2012-10-22_2012-10-22.png" alt="Statistiques"/> 
                     </div>
                     <div id="bottom_stat"></div>
                 </div>

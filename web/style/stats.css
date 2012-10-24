@@ -44,6 +44,7 @@ root {
 
 #left_col{
     width: 580px;
+    margin-top:20px;
 }
 
 #top_stat{
@@ -53,7 +54,17 @@ root {
 }
 
 #statistique{
+    width:560px;
+    padding:10px;
+    background :url("../images/stats/stat-repeat.png") repeat scroll 0 0 transparent;
+}
+
+#chartPNG{
+    width:560px;
+}
+
+#bottom_stat{
     width:580px;
-    height: 600px;
-    background :url("../images/map-repeat.png") repeat scroll 0 0 transparent;
+    height:20px;
+    background :url("../images/stats/bottom-stat.png") repeat scroll 0 0 transparent;
 }
