@@ -19,7 +19,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Singleton to manage the connection with application database.
+ *
  * @author mael
  */
 public class DataBaseManager {
@@ -35,10 +35,6 @@ public class DataBaseManager {
         this.con = con;
     }
     
-    /**
-     * Initialize the connection to the database and constructs all the tables 
-     * if they do not exist.
-     */
     private DataBaseManager(){
          try {
             Class.forName("com.mysql.jdbc.Driver");  //loads the driver
@@ -46,36 +42,20 @@ public class DataBaseManager {
             
             //creates tables for the database
             createTablePMV();
+            createTableParkingLocation();
+            createTableParking();
             createTableItinerary();
             createTableLinkage();
             createTableStatsPMV();
+            createTableStatsParking();
+            
             
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
-    /**
-     * Create StatsPMV table if it do not exist. 
-     */
-    private void createTableStatsPMV(){
-        String sqlquery = "CREATE TABLE IF NOT EXISTS StatsPMV"+
-                            "(id INT,"
-                            + "time INT,"
-                            + "dateD DATE,"
-                            + "hourH TIME"
-                            + ");";
-        try{
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate(sqlquery);
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-}
-    
-    /**
-     * Create Pmv table if it do not exist. 
-     */
+
     private void createTablePMV(){
         String sqlquery = "CREATE TABLE IF NOT EXISTS Pmv"+
                             "(numero INT,"
@@ -92,9 +72,21 @@ public class DataBaseManager {
         }
     }
     
-    /**
-     * Create Itinerary table if it do not exist. 
-     */
+        private void createTableParking(){
+        String sqlquery = "CREATE TABLE IF NOT EXISTS Parking"+
+                            "(id INT,"
+                            + "day VARCHAR(10),"
+                            + "openingHours TIME,"
+                            + "closedHours TIME);";
+                           // + "PRIMARY KEY(id));";
+        try{
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(sqlquery);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
      private void createTableItinerary(){
         String sqlquery = "CREATE TABLE IF NOT EXISTS Itinerary"+
                             "(id INT,"
@@ -110,9 +102,6 @@ public class DataBaseManager {
         }
     }
      
-    /**
-     * Create LinkagePMV table if it do not exist. 
-     */
     private void createTableLinkage(){
         String sqlquery = "CREATE TABLE IF NOT EXISTS LinkagePMV"+
                             "(idPMV INT,"
@@ -126,18 +115,59 @@ public class DataBaseManager {
         }
     }
     
-    /**
-     * Return the database connection
-     * @return a Connection
-     */
+        private void createTableStatsParking(){
+        String sqlquery = "CREATE TABLE IF NOT EXISTS StatsParking"+
+                            "(id INT,"
+                            + "idObj INT,"
+                            + "availablePlaces INT,"
+                            + "status INT,"
+                            + "parkingName VARCHAR(50),"
+                            + "dateD DATE,"
+                            + "hourH TIME);";
+                           // + "PRIMARY KEY(id));";
+        try{
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(sqlquery);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+        
+    private void createTableParkingLocation(){
+        String sqlquery = "CREATE TABLE IF NOT EXISTS ParkingLocalisation"+
+                            "(id INT,"
+                            + "longitude REAL,"
+                            + "latitude REAL,"
+                            + "PRIMARY KEY(id));";
+        try{
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(sqlquery);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }      
+    
+    
+    private void createTableStatsPMV(){
+        String sqlquery = "CREATE TABLE IF NOT EXISTS StatsPMV"+
+                            "(id INT,"
+                            + "time INT,"
+                            + "dateD DATE,"
+                            + "hourH TIME);";
+                          //  + "PRIMARY KEY(id));";
+        try{
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(sqlquery);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+    
     public Connection getCon() {
         return con;
     }
     
-    /**
-     * Create an instance of DataBaseManager if it do not exist.
-     * @return an instance of DataBaseManager
-     */
     public static synchronized DataBaseManager getInstance(){
         if(instance == null){
             instance = new DataBaseManager();
@@ -145,12 +175,8 @@ public class DataBaseManager {
         return instance;   
     }
     
-    /**
-     * Test this class.
-     * @param args 
-     */
     public static void main(String args[]){      
-        DataBaseManager.getInstance();
+        DataBaseManager.getInstance();      
     }
 
 }

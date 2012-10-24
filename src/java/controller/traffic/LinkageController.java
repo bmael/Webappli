@@ -5,6 +5,7 @@
 package controller.traffic;
 
 import controller.database.DataBaseManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -49,6 +50,26 @@ public class LinkageController {
             System.out.println(sqlquery);
             s.executeUpdate(sqlquery);
         }
+    }
+    
+    /**
+     * Return the Itinerary id(in the API) corresponding to the PMV numero given as a parameter
+     * @param idPMV
+     * @return The id in the API corresponding to the PMV numero
+     * @throws SQLException
+     */
+    public int getPmvToItineraryId(int idPMV) throws SQLException {
+        int result = 0;
+        
+        Statement s = DataBaseManager.getInstance().getCon().createStatement();
+        String sqlquery = "SELECT idAPI FROM LinkagePMV WHERE idPMV = " + idPMV + ";";
+        ResultSet res = s.executeQuery(sqlquery);
+        
+        if ( res.next() ) {
+            result = res.getInt("idAPI");
+        }
+        
+        return result;
     }
     
     /**

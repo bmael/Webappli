@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,7 +38,7 @@ public class StatsPMVController {
     public void importAPI() throws FileNotFoundException, IOException, SQLException,
             MalformedURLException, JDOMException {
 
-            List<String[]> data = ParserXML.extractDataFromAPI(
+            List<String[]> data = ParserXML.extractDataFromAPI("itinerary.xml",
                     "http://data.nantes.fr/api/getTempsParcours/1.0/4XTL4M0FTTASDFQ");
 
             for (String[] oneData : data) {                             
@@ -136,6 +137,34 @@ public class StatsPMVController {
         return liRes;
         
     }
+    
+    /**
+     * Return the last Itinerary time.
+     * @param id The id of the itinerary
+     * @return The last itinerary time. If there is no matching result in our database, this method will return 0.
+     * @throws SQLException
+     */
+    public int getLastItineraryTime(int id) throws SQLException {
+        List<ItineraryStats> liRes = new ArrayList();
+        int time = 0;
+        
+        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy/MM/dd");
+        String date = formatDate.format(new Date());
+        
+        Statement s = DataBaseManager.getInstance().getCon().createStatement();
+        String sqlquery = "SELECT * FROM StatsPMV "
+                        + "WHERE id='"
+                        + id + "' "
+                        + "AND dateD='" + date + "' "
+                        + "ORDER BY dateD DESC, hourH DESC;";
+        ResultSet res = s.executeQuery(sqlquery);
+        
+        if (res.next()){
+                time = res.getInt("time");
+        }
+        
+        return time;
+    }
 
     /**
      * Delete ALL the itineraryStats in the database.
@@ -165,6 +194,7 @@ public class StatsPMVController {
         StatsPMVController pmvContr = new StatsPMVController();
 
         try {
+//            pmvContr.removeAll();
 //            pmvContr.importAPI();
             System.out.println(pmvContr.getAll().size());
             for(ItineraryStats it : pmvContr.getItinerariesStats(11, "2012-10-17", "2012-10-17")) {
