@@ -51,9 +51,7 @@
                     <div id="top_stat"></div>
                     <div id="statistique">
                         
-                        
-                        
-                       <img id="chartPNG" src="images/stats/charts/11_2012-10-22_2012-10-22.png" alt="Statistiques"/> 
+                    <img id="chartPNG" src="images/stats/charts/11_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />.png" alt="Statistiques"/> 
                     </div>
                     <div id="bottom_stat"></div>
                 </div>
