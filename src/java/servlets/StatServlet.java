@@ -40,13 +40,13 @@ public class StatServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet StatServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet StatServlet at " + request.getContextPath() + "</h1>");
-            out.println("<h1>Action " + request.getParameter("action") + "</h1>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet StatServlet</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet StatServlet at " + request.getContextPath() + "</h1>");
+//            out.println("<h1>Action " + request.getParameter("action") + "</h1>");
             SimpleDateFormat simpledate = new SimpleDateFormat("yyyy-MM-dd");
                     try {
                         Date d = simpledate.parse(request.getParameter("date"));
@@ -64,9 +64,9 @@ public class StatServlet extends HttpServlet {
                     } catch (ParseException ex) {
                         Logger.getLogger(StatServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
-            
-            out.println("</body>");
-            out.println("</html>");
+//            
+//            out.println("</body>");
+//            out.println("</html>");
         } finally {            
             out.close();
         }

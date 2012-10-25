@@ -4,6 +4,7 @@
     Author     : mael
 --%>
 
+<%@page import="java.util.Date"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,14 +20,14 @@
     <body>
         <div id="body">
             <div id="stat_top">
-                
-                <% if(request.getAttribute("date")==null){ %>
-                     <c:set var="now" value="<%=new java.util.Date()%>" />
-                     
-                     <%}else{%>
-                         <c:set var="now" value="<%=request.getAttribute("date")%>" />                   
-                    <%}%>
-                
+                               
+                <c:if test="${requestScope.date == null}">
+                    <c:set var="now" value="<%= new Date()%>"/>                 
+                </c:if>
+                <c:if test="${requestScope.date != null}">
+                    <c:set var="now" value="${requestScope.date}"/>                 
+                </c:if>
+                         
                 <div id="left_arrow">
                     <a href="StatServlet?action=prev&date=<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />" id="leftbutton">
                             <img src="images/stats/leftArrow.png" alt="Previous"/>
@@ -49,6 +50,9 @@
                     
                     <div id="top_stat"></div>
                     <div id="statistique">
+                        
+                        
+                        
                        <img id="chartPNG" src="images/stats/charts/11_2012-10-22_2012-10-22.png" alt="Statistiques"/> 
                     </div>
                     <div id="bottom_stat"></div>
