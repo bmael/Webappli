@@ -39,14 +39,7 @@ public class StatServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet StatServlet</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet StatServlet at " + request.getContextPath() + "</h1>");
-//            out.println("<h1>Action " + request.getParameter("action") + "</h1>");
+
             SimpleDateFormat simpledate = new SimpleDateFormat("yyyy-MM-dd");
                     try {
                         Date d = simpledate.parse(request.getParameter("date"));
@@ -57,16 +50,14 @@ public class StatServlet extends HttpServlet {
                         if(request.getParameter("action").equals("next")){
                             d.setTime(d.getTime() + 86400000); //increase one day in millisecond of the current date to have the day after.
                         }
-                        out.println("<h1>date "  + d.toString() + "</h1>");
+                        
                         request.setAttribute("date", d);
                         request.getServletContext().getRequestDispatcher("/stat.jsp").forward(request, response);
                         
                     } catch (ParseException ex) {
                         Logger.getLogger(StatServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
-//            
-//            out.println("</body>");
-//            out.println("</html>");
+
         } finally {            
             out.close();
         }
