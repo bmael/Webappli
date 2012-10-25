@@ -19,17 +19,25 @@
     <body>
         <div id="body">
             <div id="stat_top">
+                
+                <% if(request.getAttribute("date")==null){ %>
+                     <c:set var="now" value="<%=new java.util.Date()%>" />
+                     
+                     <%}else{%>
+                         <c:set var="now" value="<%=request.getAttribute("date")%>" />                   
+                    <%}%>
+                
                 <div id="left_arrow">
-                    <a href="javascript:;" id="leftbutton">
+                    <a href="StatServlet?action=prev&date=<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />" id="leftbutton">
                             <img src="images/stats/leftArrow.png" alt="Previous"/>
                         </a>
                 </div>
                 <div id="date">
-                  <c:set var="now" value="<%=new java.util.Date()%>" />
-                  <fmt:formatDate type="date" dateStyle="long"  value="${now}" />
+                    <fmt:formatDate type="date" dateStyle="long"  value='${now}' />
+                 
                 </div>
                 <div id="right_arrow">
-                    <a href="javascript:;" id="rightbutton">
+                    <a href="StatServlet?action=next&date=<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />" id="rightbutton">
                             <img src="images/stats/rightArrow.png" alt="Next"/>
                         </a>
                 </div>
