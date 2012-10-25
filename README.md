@@ -49,6 +49,7 @@ DONE
 * Problem with schedules fixed. (bmael)
 * Create the database for application (create tables for Parking). (Niiner)
 * Create model classes for application (Parking / ParkingLocalisation/ ParkingStats). (Niiner)
+* Change the date in the Stat JSP, display a chart for the right date. (bmael)
 
 
 
