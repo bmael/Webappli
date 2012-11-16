@@ -5,7 +5,6 @@
 package periodic;
 
 
-import controller.traffic.StatsPMVController;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.List;
@@ -16,6 +15,7 @@ import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.TimerService;
 import model.traffic.ItineraryStats;
+import traffic.controller.StatsPMVController;
 
 /**
  * This class Provides method automatically called for delete doubles in StatsPMV 

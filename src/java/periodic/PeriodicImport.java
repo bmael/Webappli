@@ -5,8 +5,6 @@
 package periodic;
 
 
-import controller.traffic.PMVController;
-import controller.traffic.StatsPMVController;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,6 +19,8 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.ejb.TimerService;
 import org.jdom2.JDOMException;
+import traffic.controller.PMVController;
+import traffic.controller.StatsPMVController;
 
 /**
  * This class Provides method automatically called for importation of datas in application database. 

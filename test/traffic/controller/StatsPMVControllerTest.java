@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.traffic;
+package traffic.controller;
 
 import java.util.List;
 import model.traffic.ItineraryStats;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  *

@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.traffic;
+package traffic.controller;
 
-import controller.database.DataBaseManager;
+import database.DataBaseManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

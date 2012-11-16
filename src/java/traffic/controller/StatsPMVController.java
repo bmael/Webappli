@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.traffic;
+package traffic.controller;
 
-import controller.database.DataBaseManager;
+import database.DataBaseManager;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;

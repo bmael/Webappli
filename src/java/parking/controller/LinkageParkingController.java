@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.parking;
+package parking.controller;
 
-import controller.database.DataBaseManager;
+import database.DataBaseManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -12,8 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.parking.Parking;
 import model.parking.ParkingLocalisation;
-import model.traffic.Itinerary;
-import model.traffic.PMV;
 
 /**
  *

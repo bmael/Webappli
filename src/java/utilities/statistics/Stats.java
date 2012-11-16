@@ -4,9 +4,7 @@
  */
 package utilities.statistics;
 
-import controller.traffic.StatsPMVController;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -31,6 +29,7 @@ import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
+import traffic.controller.StatsPMVController;
 
 
 
@@ -84,7 +83,7 @@ public class Stats {
      * @throws IOException
      */
     private static void saveAsPNG(String title,JFreeChart chart) throws IOException{
-        ChartUtilities.saveChartAsPNG(new File("web/images/stats/charts/"+title+".png"),
+        ChartUtilities.saveChartAsPNG(new File("/build/web/images/stats/charts/"+title+".png"),
                 chart, 560, 400);
     }
     
@@ -129,6 +128,9 @@ public class Stats {
          render.setSeriesShapesVisible(0, true);
          render.setSeriesShape(0, t);
          
+         /* TODO : lisser la courbe si antialiasing est vrai */
+
+         
         saveAsPNG(id+"_"+d1+"_"+d2,chart);
         show(chart);
     }
@@ -154,21 +156,34 @@ public class Stats {
     }
     
     /**
+     * Create the png of the specific statistic if does not exist.
+     * @param int id - the id of itineray
+     * @param String d1 - the start date for the graph
+     * @param String d2 - the end daye for the graph
+     */
+    public static void createIntineraryStat(int id, String d1, String d2) throws SQLException, ParseException, IOException{
+        System.out.println(System.getProperty("user.dir"));
+            File png = new File("web/images/stats/charts/"+id+"_"+d1+"_"+d2+".png");
+                Stats.ItineraryStatsXYSeries(id, d1, d2);
+
+        
+        
+        System.out.println("png created");
+    }
+    
+    /**
      * Test this class.
      * @param args 
      */
-    public static void main(String args[]){
+    public static void main(String args[]) throws ParseException{
         try {
-            try {
                 try {
-                    Stats.ItineraryStatsXYSeries(11,"2012-10-22","2012-10-22");
+                    Stats.ItineraryStatsXYSeries(11,"2012-11-09","2012-11-09");
+                    Stats.ItineraryStatsXYSeries(11,"2012-10-25","2012-10-25");
                 } catch (IOException ex) {
                     Logger.getLogger(Stats.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                Stats.ItineraryStatsPolar(11,"2012-10-22","2012-10-22");
-            } catch (ParseException ex) {
-                Logger.getLogger(Stats.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
         } catch (SQLException ex) {
             Logger.getLogger(Stats.class.getName()).log(Level.SEVERE, null, ex);
         }

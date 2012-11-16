@@ -4,17 +4,11 @@
  */
 package servlets;
 
-import controller.database.DataBaseManager;
-import controller.traffic.ItineraryController;
-import controller.traffic.PMVController;
-import controller.traffic.StatsPMVController;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.traffic.Itinerary;
 import model.traffic.PMV;
+import traffic.controller.ItineraryController;
+import traffic.controller.PMVController;
+import traffic.controller.StatsPMVController;
 
 /**
  *

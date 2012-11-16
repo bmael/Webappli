@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.parking;
+package parking.controller;
 
-import controller.database.DataBaseManager;
+import database.DataBaseManager;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -15,12 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.traffic.ItineraryStats;
 import model.parking.ParkingLocalisation;
-import model.parking.ParkingStats;
 import org.jdom2.JDOMException;
 import utilities.dataBaseTools.ParserCSV;
-import utilities.dataBaseTools.ParserXML;
 
 /**
  *

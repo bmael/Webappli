@@ -4,8 +4,9 @@
  */
 package utilities.statistics;
 
-import org.junit.Test;
+import java.text.ParseException;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  *
@@ -33,7 +34,7 @@ public class StatsTest {
      * Test of main method, of class Stats.
      */
     @Test
-    public void testMain() {
+    public void testMain() throws ParseException {
         System.out.println("main");
         String[] args = null;
         Stats.main(args);

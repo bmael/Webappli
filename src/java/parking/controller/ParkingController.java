@@ -2,10 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.parking;
+package parking.controller;
 
-import controller.database.DataBaseManager;
-import controller.traffic.PMVController;
+import database.DataBaseManager;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -16,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.parking.Parking;
+import traffic.controller.PMVController;
 import utilities.dataBaseTools.ParserCSV;
 
 /**

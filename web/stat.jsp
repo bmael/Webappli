@@ -4,9 +4,11 @@
     Author     : mael
 --%>
 
+<%@page import="utilities.statistics.Stats"%>
 <%@page import="java.util.Date"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="perso" uri="/WEB-INF/tlds/statisticTags_library" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -50,8 +52,13 @@
                     
                     <div id="top_stat"></div>
                     <div id="statistique">
+                        <c:set var="id" value="11"/>
                         
-                    <img id="chartPNG" src="images/stats/charts/11_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />.png" alt="Statistiques"/> 
+                        <% System.out.println("jsp : "+System.getProperty("user.dir")); %>
+                        
+                        <perso:createItinerary />
+                         
+                    <img id="chartPNG" src="web/images/stats/charts/11_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />.png" alt="Statistiques"/> 
                     </div>
                     <div id="bottom_stat"></div>
                 </div>

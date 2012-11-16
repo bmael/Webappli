@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.database;
+package database;
 
 /**
  *
@@ -48,6 +48,8 @@ public class DataBaseManager {
             createTableLinkage();
             createTableStatsPMV();
             createTableStatsParking();
+            
+            createTableStatsPNG();
             
             
         } catch (Exception e) {
@@ -154,6 +156,21 @@ public class DataBaseManager {
                             + "time INT,"
                             + "dateD DATE,"
                             + "hourH TIME);";
+                          //  + "PRIMARY KEY(id));";
+        try{
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(sqlquery);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+    private void createTableStatsPNG(){
+        String sqlquery = "CREATE TABLE IF NOT EXISTS StatsPMV"+
+                            "(id INT,"
+                            + "d1 DATE,"
+                            + "d2 DATE,"
+                            + "image_stream blob NOT NULL);";
                           //  + "PRIMARY KEY(id));";
         try{
             Statement stmt = con.createStatement();
