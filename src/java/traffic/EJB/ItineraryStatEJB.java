@@ -43,7 +43,7 @@ public class ItineraryStatEJB {
         this.d2 = d2;
     }
     
-    public XYDataset retrieveDataSet() throws ParseException, SQLException{
-        return Stats.createDataset(id, d1, d2);
-    }
+    //public XYDataset retrieveDataSet() throws ParseException, SQLException{
+        //return Stats.createDataset(id, d1, d2);
+    //}
 }

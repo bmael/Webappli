@@ -2,3 +2,5 @@
 /dist/
 /nbproject/
 /doc/
+/src/build/
+/src/nbproject/private/

@@ -11,6 +11,6 @@
     </head>
     <body>
         <jsp:forward page="PMVServlet"/>
-        <jsp:forward page="PgarkiServlet"/>
+        <jsp:forward page="ParkingServlet"/>
     </body>
 </html>
