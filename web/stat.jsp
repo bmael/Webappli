@@ -4,6 +4,7 @@
     Author     : mael
 --%>
 
+<%@page import="org.jfree.chart.ChartUtilities"%>
 <%@page import="utilities.statistics.Stats"%>
 <%@page import="java.util.Date"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -55,10 +56,18 @@
                         <c:set var="id" value="11"/>
                         
                         <% System.out.println("jsp : "+System.getProperty("user.dir")); %>
-                        
-                        <perso:createItinerary />
+                        <perso:createItinerary >
+                            <jsp:attribute name="idpmv" >11</jsp:attribute>
+                            <jsp:attribute name="d1" ><fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' /></jsp:attribute>
+                            <jsp:attribute name="d2" ><fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' /></jsp:attribute>
+                            <jsp:attribute name="path" ><%= getServletContext().getRealPath("/") %>images/stats/charts</jsp:attribute>
+                            
+                        </perso:createItinerary>
                          
-                    <img id="chartPNG" src="web/images/stats/charts/11_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />.png" alt="Statistiques"/> 
+<!--                            <img id="chartPNG" src="./images/stats/charts/11_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />.png" alt="Statistiques"/> -->
+                            
+                            <img id="chartPNG" src="<%= getServletContext().getContextPath() %>/images/stats/charts/11_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />.png" alt="Statistiques"/> 
+
                     </div>
                     <div id="bottom_stat"></div>
                 </div>
