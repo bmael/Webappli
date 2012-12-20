@@ -79,6 +79,7 @@
                     <script type="text/javascript">
                         <%
                         out.println(request.getAttribute("codeJs"));
+                        out.println(request.getAttribute("codeJsParking"));
                         %>
                     </script>
                 </div>

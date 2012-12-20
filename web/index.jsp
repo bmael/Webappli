@@ -11,5 +11,6 @@
     </head>
     <body>
         <jsp:forward page="PMVServlet"/>
+        <jsp:forward page="PgarkiServlet"/>
     </body>
 </html>
