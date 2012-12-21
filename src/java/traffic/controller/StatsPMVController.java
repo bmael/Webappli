@@ -153,9 +153,8 @@ public class StatsPMVController {
         
         Statement s = DataBaseManager.getInstance().getCon().createStatement();
         String sqlquery = "SELECT * FROM StatsPMV "
-                        + "WHERE id='"
-                        + id + "' "
-                        + "AND dateD='" + date + "' "
+                        + "WHERE id='" + id + "' "
+                        + "AND TIMESTAMPDIFF(MINUTE, DATE_ADD(dateD, INTERVAL hourH HOUR_SECOND), NOW()) "
                         + "ORDER BY dateD DESC, hourH DESC;";
         ResultSet res = s.executeQuery(sqlquery);
         

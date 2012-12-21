@@ -75,8 +75,13 @@ public class PMVServlet extends HttpServlet {
                         codeJs += "my_marker.setIcon('images/marker.png');";
                         codeJs += "my_marker.setInfoDiv('";
                         
+                        
+                        List<Itinerary> iti = pmv.getItineraries();
+                        
+                        codeJs += "<h2>" + iti.get(0).getOrigine() + "</h2>";
+                        
                         for ( Itinerary itinerary:pmv.getItineraries() ) {
-                            codeJs += "<b>" + itinerary.getOrigine() + " > " + itinerary.getDestination() + "</b> : " + statsPmvContr.getLastItineraryTime(itinerary.getId()) + " minutes<br/>";
+                            codeJs += "<b>" + itinerary.getDestination() + "</b> : " + statsPmvContr.getLastItineraryTime(itinerary.getId()) + " minutes<br/>";
                         }
                         
                         codeJs += "','info');";
