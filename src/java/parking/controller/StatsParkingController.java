@@ -11,7 +11,9 @@ import java.net.MalformedURLException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -94,6 +96,34 @@ public class StatsParkingController {
  
     }
 
+    /**
+     * Return the last available places.
+     * @param id The id of the parking
+     * @return The last available places. If there is no matching result in our database, this method will return 0.
+     * @throws SQLException
+     */
+    public int getLastAvailablePlaces(int id) throws SQLException {
+        List<ParkingStats> liRes = new ArrayList();
+        int availablePlaces = 0;
+        
+        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy/MM/dd");
+        String date = formatDate.format(new Date());
+        
+        Statement s = DataBaseManager.getInstance().getCon().createStatement();
+        String sqlquery = "SELECT * FROM StatsParking "
+                        + "WHERE id='"
+                        + id + "' "
+                        + "AND dateD='" + date + "' "
+                        + "ORDER BY dateD DESC, hourH DESC;";
+        ResultSet res = s.executeQuery(sqlquery);
+        
+        if (res.next()){
+                availablePlaces = res.getInt("availablePlaces");
+        }
+        System.out.println("id  : " + id + " Nombre de places dispos : " + availablePlaces);
+        return availablePlaces;
+    }
+    
     /**
      * Delete ALL the itineraryStats in the database.
      * @throws SQLException
