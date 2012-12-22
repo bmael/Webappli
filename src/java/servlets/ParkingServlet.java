@@ -72,7 +72,7 @@ public class ParkingServlet extends HttpServlet {
                 for ( ParkingLocalisation parkingLoc : parkingsLoc ) {
                         System.out.println(parkingLoc.toString());
                         codeJsParking += "my_marker = new mxn.Marker(new mxn.LatLonPoint(" + parkingLoc.getLatitude() + "," + parkingLoc.getLongitude() + "));";
-                        codeJsParking += "my_marker.setIcon('images/marker.png');";
+                        codeJsParking += "my_marker.setIcon('images/marker-blue.png');";
 //                        codeJsParking += "my_marker.setInfoDiv('";
                         
 //                        for (Parking parking : parkings ) {
