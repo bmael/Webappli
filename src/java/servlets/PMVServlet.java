@@ -93,7 +93,7 @@ public class PMVServlet extends HttpServlet {
                 }
                 
                 request.setAttribute("codeJs", codeJs);
-                request.getServletContext().getRequestDispatcher("/map.jsp").forward(request, response);
+                request.getServletContext().getRequestDispatcher("/ParkingServlet").forward(request, response);
                 
             }       catch (FileNotFoundException ex) {
                         Logger.getLogger(PMVServlet.class.getName()).log(Level.SEVERE, null, ex);
