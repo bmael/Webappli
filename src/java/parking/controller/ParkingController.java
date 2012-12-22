@@ -81,6 +81,29 @@ public class ParkingController {
 
         return parkings;
     }
+    
+    /**
+     * Return a Parking List matching the id entered as a parameter
+     * @param id The id of the Parkings you want to retrieve
+     * @return A Parking List matching the entered id
+     * @throws SQLException 
+     */
+    public List<Parking> getParkingById(int id) throws SQLException {
+        List<Parking> parkings = new ArrayList();
+
+        Statement s = DataBaseManager.getInstance().getCon().createStatement();
+        String sqlquery = "SELECT * FROM Parking "
+                        + "WHERE id=" + id + ";";
+        ResultSet res = s.executeQuery(sqlquery);
+
+        while(res.next()){
+                parkings.add(new Parking(res.getInt("id"),res.getString("day"),
+                                    res.getString("openingHours"),
+                                    res.getString("closedHours")));
+            }
+
+        return parkings;
+    }
 
     public void removeAll() throws SQLException{
         Statement s = DataBaseManager.getInstance().getCon().createStatement();

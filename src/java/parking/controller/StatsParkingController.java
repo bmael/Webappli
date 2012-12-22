@@ -95,6 +95,29 @@ public class StatsParkingController {
         return parking;
  
     }
+    
+    /**
+     * Return The ParkingStats matching the id entered as a parameter
+     * @param id the id of the ParkingStats you want to retrieve
+     * @return The ParkingStats matching the entered id
+     * @throws SQLException
+     */
+    public ParkingStats getParkingStatsById(int id) throws SQLException {
+        ParkingStats parkingStats = new ParkingStats(id, id, id, id, null, null, null);
+        
+        Statement s = DataBaseManager.getInstance().getCon().createStatement();
+        String sqlquery = "SELECT * FROM StatsParking "
+                        + "WHERE idObj=" + id + ";";
+        ResultSet res = s.executeQuery(sqlquery);
+        
+        if (res.next()) {
+            parkingStats = new ParkingStats(res.getInt("id"),res.getInt("idObj"),res.getInt("availablePlaces"), 
+                            res.getInt("status"), res.getString("parkingName"),res.getString("dateD"), 
+                            res.getString("hourH"));
+        }
+        
+        return parkingStats;
+    }
 
     /**
      * Return the last available places.
