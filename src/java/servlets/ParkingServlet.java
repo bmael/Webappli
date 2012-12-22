@@ -18,7 +18,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.parking.Parking;
 import model.parking.ParkingLocalisation;
+import model.parking.ParkingStats;
 import parking.controller.ParkingController;
 import parking.controller.ParkingLocalisationController;
 import parking.controller.StatsParkingController;
@@ -71,15 +73,27 @@ public class ParkingServlet extends HttpServlet {
                 
                 for ( ParkingLocalisation parkingLoc : parkingsLoc ) {
                         System.out.println(parkingLoc.toString());
+                        ParkingStats parkingStats = StatsParkingContr.getParkingStatsById(parkingLoc.getId());
                         codeJsParking += "my_marker = new mxn.Marker(new mxn.LatLonPoint(" + parkingLoc.getLatitude() + "," + parkingLoc.getLongitude() + "));";
-                        codeJsParking += "my_marker.setIcon('images/marker.png');";
-//                        codeJsParking += "my_marker.setInfoDiv('";
+                        codeJsParking += "my_marker.setIcon('images/marker-blue.png');";
+                        codeJsParking += "my_marker.setInfoDiv('";
+                        codeJsParking += "<h2 align=\"center\">" + parkingStats.getParkingName() + "</h2>";
                         
-//                        for (Parking parking : parkings ) {
-//                            codeJsParking += "<b>" + itinerary.getOrigine() + " > " + itinerary.getDestination() + "</b> : " + statsPmvContr.getLastItineraryTime(itinerary.getId()) + " minutes<br/>";
-//                        }
+                        if ( parkingStats.getAvailablePlaces() == 0 ) {
+                            codeJsParking += "<h2><font color=\"red\">0 places disponibles</font></h2>";
+                        }
+                        else {
+                            codeJsParking += "<h2><font color=\"green\">" + parkingStats.getAvailablePlaces() + " places disponibles</font></h2>";
+                        }
                         
-//                        codeJsParking += "','info');";
+                        List<Parking> parkings = parkingContr.getParkingById(parkingLoc.getId());
+                        for (Parking parking : parkings ) {
+                            codeJsParking += "<b>" + parking.getDay() + " ></b> "
+                                    + "<font color=\"green\">" + parking.getOpeningHours() + "</font> : "
+                                    + "<font color=\"red\">" + parking.getClosedHours() + "</font><br/>";
+                        }
+                        
+                        codeJsParking += "','info');";
                         codeJsParking += "mapstraction.addMarker(my_marker);";
                     
                 }

@@ -38,5 +38,7 @@ public class ParkingLocalisation {
         return latitude;
     }
    
-    
+    public String toString() {
+        return "id: " + this.id + "| longitude: " + this.longitude + ", latitude: " + this.latitude;
+    }
 }
