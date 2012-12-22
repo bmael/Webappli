@@ -40,8 +40,8 @@ public class ParkingLocalisationController {
                 
             String chaine[] = oneData[0].split(",");
             String id = chaine[0].replace("\"", "");
-            String longitude = chaine[10].replace("\"", "");
-            String latitude = chaine[11].replace("\"", "");
+            String longitude = chaine[11].replace("\"", "").replace("]", "");
+            String latitude = chaine[10].replace("\"[ ", "");
 
                
             ParkingLocalisation parkingLoc = new ParkingLocalisation(Integer.parseInt(id),Float.parseFloat(longitude), Float.parseFloat(latitude));
