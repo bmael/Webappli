@@ -56,8 +56,14 @@
                         <c:set var="id" value="11"/>
                         
                         <% System.out.println("jsp : "+System.getProperty("user.dir")); %>
+                        <script type="text/javascript">
+                            // Have to do a loop "for i=0;i<itCpt;i++" to 
+                            // retrieve all the itineraries stats.
+                            // foreach set a jsp variable according to the value of the itinerary id.
+                        </script>
+                        
                         <perso:createItinerary >
-                            <jsp:attribute name="idpmv" >11</jsp:attribute>
+                            <jsp:attribute name="idpmv" >11<%-- Here use  the variable to set the value. --%></jsp:attribute>
                             <jsp:attribute name="d1" ><fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' /></jsp:attribute>
                             <jsp:attribute name="d2" ><fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' /></jsp:attribute>
                             <jsp:attribute name="path" ><%= getServletContext().getRealPath("/") %>images/stats/charts</jsp:attribute>
