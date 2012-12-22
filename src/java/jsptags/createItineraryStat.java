@@ -59,7 +59,7 @@ public class createItineraryStat extends BodyTagSupport {
        //            Stats.createIntineraryStat(Integer.parseInt(getIdpmv()), getD1(), getD2());
 //                pageContext.getResponse().setContentType("image/png");
 //ChartUtilities.writeChartAsPNG(pageContext.getResponse().getOutputStream(), Stats.createIntineraryStat(11, d1,d2, path),500,500);
-                            Stats.createIntineraryStat(Integer.parseInt(idpmv), d1,d2);
+                            Stats.createIntineraryStat(Integer.parseInt(idpmv), d1,d2, path);
             } catch (SQLException ex) {
                 Logger.getLogger(createItineraryStat.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ParseException ex) {

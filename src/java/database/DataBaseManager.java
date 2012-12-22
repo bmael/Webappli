@@ -166,10 +166,10 @@ public class DataBaseManager {
     }
     
     private void createTableStatsPNG(){
-        String sqlquery = "CREATE TABLE IF NOT EXISTS StatsPMV"+
+        String sqlquery = "CREATE TABLE IF NOT EXISTS StatsPNG"+
                             "(id INT,"
-                            + "d1 DATE,"
-                            + "d2 DATE,"
+                            + "d1 VARCHAR(50),"
+                            + "d2 VARCHAR(50),"
                             + "image_stream blob NOT NULL);";
                           //  + "PRIMARY KEY(id));";
         try{

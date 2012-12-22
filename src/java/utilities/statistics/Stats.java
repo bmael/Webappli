@@ -6,6 +6,7 @@ package utilities.statistics;
 
 import java.awt.geom.Ellipse2D;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -18,17 +19,24 @@ import java.util.TimeZone;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
+import javax.servlet.jsp.jstl.core.Config;
 import model.traffic.ItineraryStats;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.encoders.ImageEncoder;
+import org.jfree.chart.encoders.ImageEncoderFactory;
+import org.jfree.chart.encoders.ImageFormat;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.chart.servlet.ServletUtilities;
 import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
+import traffic.controller.StatisticPNGController;
 import traffic.controller.StatsPMVController;
 
 
@@ -50,7 +58,7 @@ public class Stats {
      * @throws ParseException
      * @throws SQLException
      */
-    private static XYDataset createDataset(int id, String d1, String d2) throws ParseException, SQLException{
+    public static XYDataset createDataset(int id, String d1, String d2) throws ParseException, SQLException{
         StatsPMVController statsContr = new StatsPMVController();     
         List<ItineraryStats> its = statsContr.getItinerariesStats(id, d1, d2);
         
@@ -82,8 +90,8 @@ public class Stats {
      * @param chart - the chart to display
      * @throws IOException
      */
-    private static void saveAsPNG(String title,JFreeChart chart) throws IOException{
-        ChartUtilities.saveChartAsPNG(new File("/build/web/images/stats/charts/"+title+".png"),
+    private static void saveAsPNG(File img,JFreeChart chart) throws IOException{
+        ChartUtilities.saveChartAsPNG(img,
                 chart, 560, 400);
     }
     
@@ -108,7 +116,7 @@ public class Stats {
      * @throws SQLException
      * @throws IOException
      */
-    public static void ItineraryStatsXYSeries(int id, String d1, String d2) throws SQLException, ParseException, IOException{
+    public static JFreeChart ItineraryStatsXYSeries(int id, String d1, String d2) throws SQLException, ParseException, IOException{
         
          XYDataset data = createDataset(id, d1, d2);
          JFreeChart chart = ChartFactory.createTimeSeriesChart(
@@ -130,9 +138,11 @@ public class Stats {
          
          /* TODO : lisser la courbe si antialiasing est vrai */
 
+//                 show(chart);
+
          
-        saveAsPNG(id+"_"+d1+"_"+d2,chart);
-        show(chart);
+         return chart;
+//        saveAsPNG(id+"_"+d1+"_"+d2,chart);
     }
     
     /**
@@ -160,15 +170,31 @@ public class Stats {
      * @param int id - the id of itineray
      * @param String d1 - the start date for the graph
      * @param String d2 - the end daye for the graph
+     * @param String path - the png path
      */
-    public static void createIntineraryStat(int id, String d1, String d2) throws SQLException, ParseException, IOException{
-        System.out.println(System.getProperty("user.dir"));
-            File png = new File("web/images/stats/charts/"+id+"_"+d1+"_"+d2+".png");
-                Stats.ItineraryStatsXYSeries(id, d1, d2);
-
-        
-        
-        System.out.println("png created");
+    public static void createIntineraryStat(int id, String d1, String d2, String path) throws SQLException, ParseException, IOException{
+//        System.out.println(System.getProperty("user.dir"));
+//        File png = new File(id+"_"+d1+"_"+d2);
+            
+            File png = new File(path+"/"+id+"_"+d1+"_"+d2+".png");
+//            png.mkdirs();
+            System.out.println(png.getAbsolutePath());
+            JFreeChart chart = Stats.ItineraryStatsXYSeries(id, d1, d2);
+            
+//            ImageEncoder imageEncoder = ImageEncoderFactory.newInstance(ImageFormat.PNG);
+//            imageEncoder.encode(chart.createBufferedImage(560, 400), new FileOutputStream(png));
+//
+//            StatisticPNGController contr = new StatisticPNGController();
+//            contr.add(id, d1, d2, png);
+            System.out.println("png created");
+            Date now = new Date();
+            
+            // Last modification have to be inferior to 5 minutes
+            if(!png.exists() || png.lastModified() <= now.getTime() - 300000)
+            {
+                Stats.saveAsPNG(png, chart);
+            }
+//            return chart;
     }
     
     /**
@@ -178,7 +204,7 @@ public class Stats {
     public static void main(String args[]) throws ParseException{
         try {
                 try {
-                    Stats.ItineraryStatsXYSeries(11,"2012-11-09","2012-11-09");
+                    Stats.ItineraryStatsXYSeries(11,"2012-11-15","2012-11-16");
                     Stats.ItineraryStatsXYSeries(11,"2012-10-25","2012-10-25");
                 } catch (IOException ex) {
                     Logger.getLogger(Stats.class.getName()).log(Level.SEVERE, null, ex);
