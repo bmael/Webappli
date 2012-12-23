@@ -11,6 +11,9 @@ TODO
 
 * See how to place markers according to the distance for the PMV. (Thanatos21 & Niiner)
 * JUnit test. => May be we have to do a mock for dbmanager to test our application...
+* Display all statistics for parking and PMV
+* Implement filters
+* Deploy application (Google App Engine doesn't support EJB and JDBC ...)
 
 
 INFO
@@ -49,6 +52,8 @@ DONE
 * Problem with schedules fixed. (bmael)
 * Create the database for application (create tables for Parking). (Niiner)
 * Create model classes for application (Parking / ParkingLocalisation/ ParkingStats). (Niiner)
+* Create Parking Servlet (Niiner)
+* The map can now display PMV, parkings and theirs information (Niiner & Thanatos)
 * Change the date in the Stat JSP, display a chart for the right date. (bmael)
 
 
