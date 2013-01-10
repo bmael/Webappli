@@ -54,7 +54,6 @@ public class createItineraryStat extends BodyTagSupport {
         
         try {
             JspWriter out=pageContext.getOut();
-            out.println("<div>into the tags </div>");
             try {
        //            Stats.createIntineraryStat(Integer.parseInt(getIdpmv()), getD1(), getD2());
 //                pageContext.getResponse().setContentType("image/png");
