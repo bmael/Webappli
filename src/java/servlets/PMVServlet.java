@@ -90,6 +90,7 @@ public class PMVServlet extends HttpServlet {
                         
                         codeJs += "<input type=\"HIDDEN\" id=\"itCpt\" value=\"" + cpt + "\"/>";
                         codeJs += "','info');";
+                        codeJs += "my_marker.setAttribute(\"group\", \"PMV\");";
                         codeJs += "mapstraction.addMarker(my_marker);";
                     }
                 }

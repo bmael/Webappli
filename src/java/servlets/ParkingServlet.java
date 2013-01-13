@@ -94,6 +94,7 @@ public class ParkingServlet extends HttpServlet {
                         }
                         
                         codeJsParking += "','info');";
+                        codeJsParking += "my_marker.setAttribute(\"group\", \"Parking\");";
                         codeJsParking += "mapstraction.addMarker(my_marker);";
                     
                 }
