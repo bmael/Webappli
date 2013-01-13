@@ -4,6 +4,7 @@
  */
 package servlets;
 
+import javax.servlet.http.HttpSession;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -86,6 +87,7 @@ public class PMVServlet extends HttpServlet {
                             codeJs += "<b>" + itinerary.getDestination() + "</b> : " + statsPmvContr.getLastItineraryTime(itinerary.getId()) + " minutes<br/>";
                             codeJs += "<input id=\"itId\""+ cpt +" type=\"HIDDEN\" value=\""+itinerary.getId()+"\"/>";
                         }
+                        
                         codeJs += "<input type=\"HIDDEN\" id=\"itCpt\" value=\"" + cpt + "\"/>";
                         codeJs += "','info');";
                         codeJs += "mapstraction.addMarker(my_marker);";

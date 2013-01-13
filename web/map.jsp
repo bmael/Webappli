@@ -41,7 +41,10 @@
 			 */
 			$("#iframe").click(function() {
 				$.fancybox.open({
-					href : 'stat.jsp',
+					href : 'stat.jsp?itCpt='+
+                                            document.getElementById("itCpt").value+
+                                            '&itId='+
+                                            document.getElementById("itId").value,
 					type : 'iframe',
 					padding : 5,
                                         width: 1000

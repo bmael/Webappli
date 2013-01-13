@@ -53,36 +53,21 @@
                     
                     <div id="top_stat"></div>
                     <div id="statistique">
-                        <c:set var="id" value="11"/>
-                        <script type="text/javascript">
-                            var cpt = 0;
-                            for(cpt = 0; cpt < Document.getElementById("itCpt").value;cpt++)
-                            { 
-                        </script>
-                               <% System.out.println("plop"); %>
-                               
-                               <perso:createItinerary >
-                                    <jsp:attribute name="idpmv" >${id}</jsp:attribute> 
-                                    <jsp:attribute name="d1" ><fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' /></jsp:attribute>
-                                    <jsp:attribute name="d2" ><fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' /></jsp:attribute>
-                                    <jsp:attribute name="path" ><%= getServletContext().getRealPath("/") %>images/stats/charts</jsp:attribute>
-                                </perso:createItinerary>           
-                        <script type="text/javascript">
-                            }
-                           
-                        </script>
+                        
+                        nb It = ${param.itCpt}
+                        
+                        
+                        <c:set var="id" value="${param.itId}"/>
                         
                         <perso:createItinerary >
-                            <jsp:attribute name="idpmv" >${id}<%-- Here use  the variable to set the value. --%></jsp:attribute>
+                            <jsp:attribute name="idpmv" >${id}<%-- Here use the variable to set the value. --%></jsp:attribute>
                             <jsp:attribute name="d1" ><fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' /></jsp:attribute>
                             <jsp:attribute name="d2" ><fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' /></jsp:attribute>
                             <jsp:attribute name="path" ><%= getServletContext().getRealPath("/") %>images/stats/charts</jsp:attribute>
                             
                         </perso:createItinerary>
                          
-<!--                            <img id="chartPNG" src="./images/stats/charts/11_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />.png" alt="Statistiques"/> -->
-                            
-                            <img id="chartPNG" src="<%= getServletContext().getContextPath() %>/images/stats/charts/11_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />.png" alt="Statistiques"/> 
+                        <img id="chartPNG" src="<%= getServletContext().getContextPath() %>/images/stats/charts/${id}_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />.png" alt="Statistiques"/> 
 
                     </div>
                     <div id="bottom_stat"></div>
