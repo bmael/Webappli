@@ -85,9 +85,8 @@ public class PMVServlet extends HttpServlet {
                         for ( Itinerary itinerary:pmv.getItineraries() ) {
                             cpt ++;
                             codeJs += "<b>" + itinerary.getDestination() + "</b> : " + statsPmvContr.getLastItineraryTime(itinerary.getId()) + " minutes<br/>";
-                            codeJs += "<input id=\"itId\""+ cpt +" type=\"HIDDEN\" value=\""+itinerary.getId()+"\"/>";
+                            codeJs += "<input id=\"itId"+ cpt +"\" type=\"HIDDEN\" value=\""+itinerary.getId()+"\"/>";
                         }
-                        
                         codeJs += "<input type=\"HIDDEN\" id=\"itCpt\" value=\"" + cpt + "\"/>";
                         codeJs += "','info');";
                         codeJs += "mapstraction.addMarker(my_marker);";

@@ -53,21 +53,18 @@
                     
                     <div id="top_stat"></div>
                     <div id="statistique">
-                        
-                        nb It = ${param.itCpt}
-                        
-                        
-                        <c:set var="id" value="${param.itId}"/>
-                        
-                        <perso:createItinerary >
-                            <jsp:attribute name="idpmv" >${id}<%-- Here use the variable to set the value. --%></jsp:attribute>
-                            <jsp:attribute name="d1" ><fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' /></jsp:attribute>
-                            <jsp:attribute name="d2" ><fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' /></jsp:attribute>
-                            <jsp:attribute name="path" ><%= getServletContext().getRealPath("/") %>images/stats/charts</jsp:attribute>
-                            
-                        </perso:createItinerary>
+                                               
+                        <c:forTokens items="${param.itId}" delims=";" var="id" >
+                            <perso:createItinerary >
+                                <jsp:attribute name="idpmv" >${id}<%-- Here use the variable to set the value. --%></jsp:attribute>
+                                <jsp:attribute name="d1" ><fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' /></jsp:attribute>
+                                <jsp:attribute name="d2" ><fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' /></jsp:attribute>
+                                <jsp:attribute name="path" ><%= getServletContext().getRealPath("/") %>images/stats/charts</jsp:attribute>
+                            </perso:createItinerary>
+                            <img id="chartPNG" src="<%= getServletContext().getContextPath() %>/images/stats/charts/${id}_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />.png" alt="Statistiques"/> 
+                        </c:forTokens>
                          
-                        <img id="chartPNG" src="<%= getServletContext().getContextPath() %>/images/stats/charts/${id}_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />_<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />.png" alt="Statistiques"/> 
+                        
 
                     </div>
                     <div id="bottom_stat"></div>
