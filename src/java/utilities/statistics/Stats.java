@@ -6,7 +6,6 @@ package utilities.statistics;
 
 import java.awt.geom.Ellipse2D;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -19,24 +18,18 @@ import java.util.TimeZone;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.ServletContext;
-import javax.servlet.jsp.jstl.core.Config;
-import model.traffic.ItineraryStats;
+import traffic.model.ItineraryStats;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.encoders.ImageEncoder;
-import org.jfree.chart.encoders.ImageEncoderFactory;
-import org.jfree.chart.encoders.ImageFormat;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.chart.servlet.ServletUtilities;
 import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
-import traffic.controller.StatisticPNGController;
+import traffic.controller.ItineraryController;
 import traffic.controller.StatsPMVController;
 
 
@@ -119,8 +112,11 @@ public class Stats {
     public static JFreeChart ItineraryStatsXYSeries(int id, String d1, String d2) throws SQLException, ParseException, IOException{
         
          XYDataset data = createDataset(id, d1, d2);
+         ItineraryController contr = new ItineraryController();
+         String departure = contr.get(id).getOrigine();
+         String arrival = contr.get(id).getDestination();
          JFreeChart chart = ChartFactory.createTimeSeriesChart(
-            "Itinéraire " + id + " (" + d1 + ")",
+            departure + " -> " + arrival,
             "Heure de la journée", 
             "Temps de parcours (minutes)", 
             data,

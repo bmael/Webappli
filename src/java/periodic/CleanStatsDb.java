@@ -14,8 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.TimerService;
-import model.traffic.ItineraryStats;
 import traffic.controller.StatsPMVController;
+import traffic.model.ItineraryStats;
 
 /**
  * This class Provides method automatically called for delete doubles in StatsPMV 

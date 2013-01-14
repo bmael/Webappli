@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
-import model.traffic.Itinerary;
+import traffic.model.Itinerary;
 import utilities.dataBaseTools.ParserCSV;
 
 /**
@@ -87,6 +87,28 @@ public class ItineraryController {
             }
 
         return its;
+    }
+    
+    /**
+     * Return an itinerary with the given id
+     * @param id the id of the itinerary that we return
+     * @return An itinerary or null if no itinerary are found for the given id.
+     */
+    public Itinerary get(int id) throws SQLException{
+        Statement s = DataBaseManager.getInstance().getCon().createStatement();
+        String sqlquery = "SELECT * FROM Itinerary "
+                        + "WHERE id = " + id + ";";
+        ResultSet res = s.executeQuery(sqlquery);
+        
+
+        while(res.next()){
+            return new Itinerary(res.getInt("id"),res.getInt("numero"),
+                                res.getString("origine"),
+                                res.getString("destination"));
+        }
+        
+        return null;
+
     }
     
     /**

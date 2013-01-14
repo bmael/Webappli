@@ -17,7 +17,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.traffic.ItineraryStats;
 import model.parking.ParkingStats;
 import org.jdom2.JDOMException;
 import utilities.dataBaseTools.ParserXML;

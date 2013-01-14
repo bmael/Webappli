@@ -11,8 +11,8 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.traffic.Itinerary;
-import model.traffic.PMV;
+import traffic.model.Itinerary;
+import traffic.model.PMV;
 
 /**
  * This class provides methods to link PMVs ids from API getTempsParcours and csv file.

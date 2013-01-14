@@ -4,7 +4,6 @@
  */
 package servlets;
 
-import javax.servlet.http.HttpSession;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,11 +18,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.traffic.Itinerary;
-import model.traffic.PMV;
 import traffic.controller.ItineraryController;
 import traffic.controller.PMVController;
 import traffic.controller.StatsPMVController;
+import traffic.model.Itinerary;
+import traffic.model.PMV;
 
 /**
  *
