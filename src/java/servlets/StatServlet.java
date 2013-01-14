@@ -51,6 +51,7 @@ public class StatServlet extends HttpServlet {
                             d.setTime(d.getTime() + 86400000); //increase one day in millisecond of the current date to have the day after.
                         }
                         
+                        request.setAttribute("itId",request.getParameter("itId"));
                         request.setAttribute("date", d);
                         request.getServletContext().getRequestDispatcher("/stat.jsp").forward(request, response);
                         

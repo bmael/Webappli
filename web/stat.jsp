@@ -32,7 +32,7 @@
                 </c:if>
                          
                 <div id="left_arrow">
-                    <a href="StatServlet?action=prev&date=<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />" id="leftbutton">
+                    <a href="StatServlet?action=prev&date=<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />&itId=${param.itId}" id="leftbutton">
                             <img src="images/stats/leftArrow.png" alt="Previous"/>
                         </a>
                 </div>
@@ -41,7 +41,7 @@
                  
                 </div>
                 <div id="right_arrow">
-                    <a href="StatServlet?action=next&date=<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />" id="rightbutton">
+                    <a href="StatServlet?action=next&date=<fmt:formatDate pattern='yyyy-MM-dd'  value='${now}' />&itId=${param.itId}" id="rightbutton">
                             <img src="images/stats/rightArrow.png" alt="Next"/>
                         </a>
                 </div>
@@ -53,7 +53,6 @@
                     
                     <div id="top_stat"></div>
                     <div id="statistique">
-                                               
                         <c:forTokens items="${param.itId}" delims=";" var="id" >
                             <perso:createItinerary >
                                 <jsp:attribute name="idpmv" >${id}<%-- Here use the variable to set the value. --%></jsp:attribute>
