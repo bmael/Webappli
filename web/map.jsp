@@ -95,9 +95,10 @@
                         <h2>Filtres</h2>
                     </div>
                     <div id="filter">
+                        <script type="text/javascript" charset="utf-8" src="js/markersOperations.js"></script>
                         <form action="" method="POST">
-                            <input type="checkbox" name="PMV" value="PMV"/> PMV <br/>
-                            <input type="checkbox" name="Parking" value="Parking"/> Parking
+                            <input type="checkbox" name="PMV" value="PMV" checked="checked" onClick="checkedBox(this)"/> PMV <br/>
+                            <input type="checkbox" name="Parking" value="Parking" checked="checked" onClick="checkedBox(this)"/> Parking
                         </form>
                     </div>
                     <div id="bottom_box"></div>
