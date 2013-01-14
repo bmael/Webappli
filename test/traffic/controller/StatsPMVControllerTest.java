@@ -5,7 +5,7 @@
 package traffic.controller;
 
 import java.util.List;
-import model.traffic.ItineraryStats;
+import traffic.model.ItineraryStats;
 import static org.junit.Assert.*;
 import org.junit.Test;
 

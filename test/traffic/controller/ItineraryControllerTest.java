@@ -5,9 +5,9 @@
 package traffic.controller;
 
 import java.util.List;
-import model.traffic.Itinerary;
 import static org.junit.Assert.*;
 import org.junit.Test;
+import traffic.model.Itinerary;
 
 /**
  *
