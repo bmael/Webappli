@@ -40,11 +40,12 @@
 			 *  Simple image gallery. Uses default settings
 			 */
 			$("#iframe").click(function() {
+                            
                                 var url = 'stat.jsp?itId=';
                                 for(var i=1; i<=document.getElementById("itCpt").value;i++){
                                     url+= document.getElementById("itId"+i).value + ";";
                                 }
-                                alert(url);
+                                
 				$.fancybox.open({
 					href : url,
 					type : 'iframe',
