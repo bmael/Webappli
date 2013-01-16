@@ -5,6 +5,13 @@ WEB SERVICE
 This is a project of M1 ALMA at the university of Nantes.
 We have to create a web application for Nantes.
 
+DEVELOPERS
+----------
+
+Julien BIZEUL (thanatos21) 
+Florian FAGNIEZ (niiner)
+Maël BARBIN (bmael)
+
 
 TODO
 ----
